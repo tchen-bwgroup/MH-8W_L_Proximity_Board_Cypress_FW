@@ -1,0 +1,5 @@
+F:\BW Data\01 - Project\11 - MH-8W\01 - SW\01 - Release\MH-8W_Proximity_Board\MH-8W_Proximity_Board_V11_20170718\MH-8W_PROXIMITY.cydsn\Bootloader_V01\Bootloader_PSoC4_Example01.cydsn\Bootloader_PSoC4_Example01.cyprj|224580b0-36de-4369-8f77-118d8e60bd8f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|e250a56a-9a04-4b4c-9a1a-d94e26c1562b
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|eea7569f-2e9c-4049-86b8-4e2359cc25d7
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|9f3e900c-f741-4a13-bca0-e23ed712c703
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|456a40b4-7db1-48bb-a4a6-d7ad63e6ea4a

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="5f2be1a5-0687-4501-bb8c-cf21cb8211bf">
+<CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf type_name="CyDesigner.Common.ProjMgmt.GUI.CyBookmarkData" version="1">
+<indicators />
+</CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf>
+</dataGuid>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Source Files\main.c">
+<ExpandedNodeIds>
+<v>Bootloader_PSoC4_Example01-000</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.cydwr\Pins</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.cydwr\Analog</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.cydwr\Clocks</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.cydwr\Interrupts</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.cydwr\System</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.cydwr\Directives</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.cydwr\Flash Security</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Header Files</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Header Files\cyapicallbacks.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Source Files</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Source Files\main.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example.pdf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader\Bootloader.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader\Bootloader.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader\Bootloader_PVT.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader_Status</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader_Status\Bootloader_Status.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader_Status\Bootloader_Status.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader_Status\Bootloader_Status_aliases.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader_Status\Bootloader_Status_PM.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cm0gcc.ld</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\Cm0Iar.icf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\Cm0RealView.scat</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\Cm0Start.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cmsis_armcc.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cmsis_gcc.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\core_cm0.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\core_cm0_psoc4.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\core_cmFunc.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\core_cmInstr.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyBootAsmGnu.s</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyBootAsmIar.s</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyBootAsmRv.s</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyFlash.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyFlash.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyLib.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyLib.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cypins.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cyPm.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cyPm.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cytypes.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cyutils.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_lfclk</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_lfclk\CyLFClk.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_lfclk\CyLFClk.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_BOOT.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_BOOT.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_I2C.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_I2C.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_I2C_BOOT.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_I2C_INT.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_I2C_PVT.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_I2C_SLAVE.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_PINS.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_PM.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave\I2C_Slave_PVT.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_SCB_IRQ</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_SCB_IRQ\I2C_Slave_SCB_IRQ.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_SCB_IRQ\I2C_Slave_SCB_IRQ.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_SCBCLK</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_SCBCLK\I2C_Slave_SCBCLK.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_SCBCLK\I2C_Slave_SCBCLK.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_scl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_scl\I2C_Slave_scl.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_scl\I2C_Slave_scl.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_scl\I2C_Slave_scl_aliases.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_scl\I2C_Slave_scl_PM.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_sda</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_sda\I2C_Slave_sda.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_sda\I2C_Slave_sda.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_sda\I2C_Slave_sda_aliases.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\I2C_Slave_sda\I2C_Slave_sda_PM.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cycodeshareexport.ld</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cycodeshareimport.ld</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cycodeshareimport.scat</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cydevice_trm.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cydevicegnu_trm.inc</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cydeviceiar_trm.inc</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cydevicerv_trm.inc</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cydisabledsheets.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cyfitter.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cyfitter_cfg.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cyfitter_cfg.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cyfittergnu.inc</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cyfitteriar.inc</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cyfitterrv.inc</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cymetadata.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\project.h</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Bootloader_PSoC4_Example01-000</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.cydwr</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Header Files</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Header Files\cyapicallbacks.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Source Files</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Source Files\main.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example.pdf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader\Bootloader.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader\Bootloader.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader\Bootloader_PVT.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader_Status</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader_Status\Bootloader_Status.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader_Status\Bootloader_Status.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader_Status\Bootloader_Status_aliases.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\Bootloader_Status\Bootloader_Status_PM.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cm0gcc.ld</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\Cm0Iar.icf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\Cm0RealView.scat</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\Cm0Start.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cmsis_armcc.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\cmsis_gcc.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\core_cm0.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\core_cm0_psoc4.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\core_cmFunc.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\core_cmInstr.h</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyBootAsmGnu.s</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyBootAsmIar.s</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyBootAsmRv.s</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyFlash.c</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Generated_Source\PSoC4\cy_boot\CyFlash.h</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Bootloader_PSoC4_Example01-000</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4000</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4000\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4000S</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4000S\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4100S</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4100S\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200 BLE</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200 BLE\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200L</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200L\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200M</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200M\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC Analog Coprocessor</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC Analog Coprocessor\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Bootloader_PSoC4_Example01-000</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4000</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4000\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4000S</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4000S\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4100S</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4100S\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200 BLE</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200 BLE\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200L</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200L\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200M</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC 4200M\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC Analog Coprocessor</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\PSoC4\PSoC Analog Coprocessor\TopDesign.ctl</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Bootloader_PSoC4_Example01-000</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\Bootloader.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\Bootloader_Status.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\Bootloader_Status_PM.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\Cm0Start.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\CyBootAsmGnu.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\cyfitter_cfg.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\CyFlash.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\CyLFClk.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\CyLib.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\cymetadata.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\cyPm.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\cyutils.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_BOOT.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_I2C.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_I2C_BOOT.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_I2C_INT.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_I2C_SLAVE.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_PM.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_SCB_IRQ.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_SCBCLK.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_scl.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_scl_PM.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_sda.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_sda_PM.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\main.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Bootloader_PSoC4_Example01.elf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Bootloader_PSoC4_Example01.hex</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Bootloader_PSoC4_Example01.map</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.gpdsc</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.rpt</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Bootloader_PSoC4_Example01-000</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\Bootloader.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\Bootloader_Status.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\Bootloader_Status_PM.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\Cm0Start.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\CyBootAsmGnu.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\cyfitter_cfg.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\CyFlash.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\CyLFClk.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\CyLib.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\cymetadata.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\cyPm.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\cyutils.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_BOOT.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_I2C.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_I2C_BOOT.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_I2C_INT.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_I2C_SLAVE.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_PM.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_SCB_IRQ.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_SCBCLK.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_scl.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_scl_PM.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_sda.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\I2C_Slave_sda_PM.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Listing Files\main.lst</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Bootloader_PSoC4_Example01.elf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Bootloader_PSoC4_Example01.hex</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\CortexM0\ARM_GCC_493\Release\Bootloader_PSoC4_Example01.map</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_PSoC4_Example01.gpdsc</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Bootloader_PSoC4_Example01-000</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\PSoC 4 Architecture TRM</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\PSoC 4000 Family Datasheet</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\System Reference Guides</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\System Reference Guides\cy_boot_v5_50</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\System Reference Guides\cy_lfclk_v1_10</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_v1_50.pdf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\cy_pins_v2_20.pdf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\LED_v1_0.pdf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Power_v1_0.pdf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\SCB_P4_v3_20.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Bootloader_PSoC4_Example01-000</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\PSoC 4 Architecture TRM</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\PSoC 4000 Family Datasheet</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\System Reference Guides</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\System Reference Guides\cy_boot_v5_50</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\System Reference Guides\cy_lfclk_v1_10</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Bootloader_v1_50.pdf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\cy_pins_v2_20.pdf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\LED_v1_0.pdf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\Power_v1_0.pdf</v>
+<v>Bootloader_PSoC4_Example01-000\Bootloader_PSoC4_Example01\SCB_P4_v3_20.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\Bootloader_PSoC4_Example01.cydwr" />
+<name v=".\Generated_Source\PSoC4\Bootloader.c" />
+<name v=".\main.c" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1053, 486" SelectedTabbedMdiWindow="93e6a65b-1e89-402b-aa42-18f532a5ac64"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="ac2c941b-d090-43db-ade0-e60ee18f5e95" /><DocumentWindow Key="352064f5-9ed6-46ec-b1f9-2d58b13f30d5" Guid="6c4d0140-07fc-4e45-ab49-31129c9bf102" /><DocumentWindow Key="b5ec81ef-364e-4728-9a79-58e149727c2a" Guid="68f167f8-d8d8-4fb2-827e-1c8ade473c8d" /><DocumentWindow Key="a4aa9ca9-6a8a-4d6d-b32f-e8251e8bab53" Guid="6228a7ad-e4f1-4be5-9d16-84a3ddecf5ed" /><DocumentWindow Key="cf71599e-7c15-4682-9448-59967763480f" Guid="93e6a65b-1e89-402b-aa42-18f532a5ac64" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="Release" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

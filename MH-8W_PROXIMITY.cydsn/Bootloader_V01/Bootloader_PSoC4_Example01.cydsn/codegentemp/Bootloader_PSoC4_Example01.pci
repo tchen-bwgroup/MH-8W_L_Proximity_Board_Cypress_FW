@@ -1,0 +1,7 @@
+# Bootloader_PSoC4_Example01
+# 2017-07-19 08:25:05Z
+
+set_location "ClockGenBlock" m0s8clockgenblockcell -1 -1 0
+set_io "\I2C_Slave:sda(0)\" iocell 3 0
+set_io "\I2C_Slave:scl(0)\" iocell 3 1
+set_io "Bootloader_Status(0)" iocell 1 6

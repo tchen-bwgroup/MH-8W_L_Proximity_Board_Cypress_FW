@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pindata xsi:schemaLocation="http://cypress.com/xsd/cypindata_v2 ../../dtd/cypindata_v2.xsd" device="CY8C4014SXI-420" package="8-SOIC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://cypress.com/xsd/cypindata_v2">
+  <capabilities>
+    <capability name="DIGITAL" value="0x0000000000000001" />
+    <capability name="ANALOG" value="0x0000000000000002" />
+    <capability name="ROUTABLE" value="0x0000000000000004" />
+    <capability name="GPIO" value="0x0000000000000010" />
+    <capability name="SIO" value="0x0000000000000020" />
+    <capability name="OVTIO" value="0x0000000000000040" />
+    <capability name="TRUETOUCH" value="0x0000000000000080" />
+    <capability name="DAC_HI_OUT" value="0x0000000000000100" />
+    <capability name="ABUF_POS" value="0x0000000000000200" />
+    <capability name="ABUF_OUT" value="0x0000000000000400" />
+    <capability name="ABUF_NEG" value="0x0000000000000800" />
+    <capability name="SWD" value="0x0000000000001000" />
+    <capability name="SWO" value="0x0000000000002000" />
+    <capability name="JTAG" value="0x0000000000004000" />
+    <capability name="JTAG_NTRST" value="0x0000000000008000" />
+    <capability name="XRES" value="0x0000000000010000" />
+    <capability name="TRACE" value="0x0000000000020000" />
+    <capability name="WAKEUP" value="0x0000000000040000" />
+    <capability name="I2CWKUP_SDA" value="0x0000000000100000" />
+    <capability name="I2CWKUP_SCL" value="0x0000000000200000" />
+    <capability name="USB_D_PLUS" value="0x0000000000400000" />
+    <capability name="USB_D_MINUS" value="0x0000000000800000" />
+    <capability name="ECO_MHZ_XO" value="0x0000000001000000" />
+    <capability name="ECO_MHZ_XI" value="0x0000000002000000" />
+    <capability name="ECO_32KHZ_XO" value="0x0000000004000000" />
+    <capability name="ECO_32KHZ_XI" value="0x0000000008000000" />
+    <capability name="DSM_EXT_PIN_ONE" value="0x0000000010000000" />
+    <capability name="DSM_EXT_PIN_TWO" value="0x0000000020000000" />
+    <capability name="SAR_EXT_PIN" value="0x0000000040000000" />
+    <capability name="EXTSYNC" value="0x0000000100000000" />
+    <capability name="EXTREJECT" value="0x0000000200000000" />
+    <capability name="EXTCLK" value="0x0000000400000000" />
+    <capability name="EXT_VREF" value="0x0000000800000000" />
+    <capability name="PORT_INTERRUPT" value="0x0000001000000000" />
+    <capability name="HOTSWAP" value="0x0000002000000000" />
+    <capability name="LCD_COM" value="0x0000004000000000" />
+    <capability name="LCD_SEG" value="0x0000008000000000" />
+    <capability name="CSD_SHIELD_TANK" value="0x0000010000000000" />
+    <capability name="CSD_CMOD" value="0x0000020000000000" />
+  </capabilities>
+  <pins>
+    <pin number="1" name="P3[1]">
+      <pad name="P3[1]" number="30" portId="3" pinId="1" ioSupplyPin="VDDIO_HIF" capabilities="0x0000001000001013">
+        <ffbterm ffbtype="SCB" ffbid="0" term="i2c_scl" />
+        <ffbterm ffbtype="SCB" ffbid="0" term="scl" />
+        <ffbterm ffbtype="CPUSS" ffbid="0" term="swd_clk" />
+      </pad>
+    </pin>
+    <pin number="2" name="P0[4]">
+      <pad name="P0[4]" number="6" portId="0" pinId="4" ioSupplyPin="VDDD" capabilities="0x0000021400000013">
+        <ffbterm ffbtype="SRSS" ffbid="0" term="ext_clk" />
+        <ffbterm ffbtype="TCPWM" ffbid="0" term="tr_in" wire="4" />
+        <ffbterm ffbtype="TCPWM" ffbid="0" term="start" wire="4" />
+        <ffbterm ffbtype="TCPWM" ffbid="0" term="reload" wire="4" />
+        <ffbterm ffbtype="TCPWM" ffbid="0" term="stop" wire="4" />
+        <ffbterm ffbtype="TCPWM" ffbid="0" term="count" wire="4" />
+        <ffbterm ffbtype="TCPWM" ffbid="0" term="capture" wire="4" />
+        <ffbterm ffbtype="CSD" ffbid="0" term="comp" alternative="1" />
+        <ffbterm ffbtype="CSD" ffbid="0" term="cmod" />
+      </pad>
+    </pin>
+    <pin number="3" name="VCC">
+      <pad name="VCCQ" number="7" ioSupplyPin="VDDD" powerPadNames="VCCQ" capabilities="0x0000000000000000" />
+      <pad name="VCCD" number="8" ioSupplyPin="VDDD" powerPadNames="VCCD" capabilities="0x0000000000000000">
+        <ffbterm ffbtype="SRSS" ffbid="0" term="pad_vccd" />
+      </pad>
+    </pin>
+    <pin number="4" name="VDD">
+      <pad name="VDDIO_HIF" number="9" ioSupplyPin="VDDD" powerPadNames="VDDIO_HIF" capabilities="0x0000000000000000">
+        <ffbterm ffbtype="SRSS" ffbid="0" term="pad_vccq_or_vddio" />
+      </pad>
+      <pad name="VDDD" number="10" ioSupplyPin="VDDD" powerPadNames="VDDD" capabilities="0x0000000000000000">
+        <ffbterm ffbtype="SRSS" ffbid="0" term="pad_vddd" />
+      </pad>
+      <pad name="VDDQ" number="11" ioSupplyPin="VDDD" powerPadNames="VDDQ" capabilities="0x0000000000000000">
+        <ffbterm ffbtype="SRSS" ffbid="0" term="pad_vddq" />
+      </pad>
+    </pin>
+    <pin number="5" name="VSS">
+      <pad name="VSSQ" number="12" ioSupplyPin="VDDD" powerPadNames="VSSQ" capabilities="0x0000000000000000">
+        <ffbterm ffbtype="SRSS" ffbid="0" term="pad_vssq" />
+      </pad>
+      <pad name="VSSD" number="13" ioSupplyPin="VDDD" powerPadNames="VSSD" capabilities="0x0000000000000000">
+        <ffbterm ffbtype="SRSS" ffbid="0" term="pad_vssd" />
+      </pad>
+      <pad name="VSSIO_0" number="14" ioSupplyPin="VDDD" powerPadNames="VSSIO_0" capabilities="0x0000000000000000">
+        <ffbterm ffbtype="SRSS" ffbid="0" term="pad_vssio" />
+      </pad>
+    </pin>
+    <pin number="6" name="P1[1]">
+      <pad name="P1[1]" number="19" portId="1" pinId="1" ioSupplyPin="VDDD" capabilities="0x0000001000000013">
+        <ffbterm ffbtype="TCPWM" ffbid="0" term="line_out" />
+        <ffbterm ffbtype="SRSS" ffbid="0" term="adft_por_pad_hv" />
+      </pad>
+    </pin>
+    <pin number="7" name="P1[6]">
+      <pad name="P1[6]" number="24" portId="1" pinId="6" ioSupplyPin="VDDD" capabilities="0x0000001000000013">
+        <ffbterm ffbtype="TCPWM" ffbid="0" term="tr_overflow" alternative="1" />
+        <ffbterm ffbtype="TCPWM" ffbid="0" term="line_out_compl" />
+        <ffbterm ffbtype="TCPWM" ffbid="0" term="tr_underflow" alternative="1" />
+        <ffbterm ffbtype="CSD" ffbid="0" term="comp" alternative="2" />
+      </pad>
+    </pin>
+    <pin number="8" name="P3[0]">
+      <pad name="P3[0]" number="29" portId="3" pinId="0" ioSupplyPin="VDDIO_HIF" capabilities="0x0000001000001013">
+        <ffbterm ffbtype="SCB" ffbid="0" term="i2c_sda" />
+        <ffbterm ffbtype="SCB" ffbid="0" term="sda" />
+        <ffbterm ffbtype="CPUSS" ffbid="0" term="swd_data" />
+      </pad>
+    </pin>
+  </pins>
+</pindata>

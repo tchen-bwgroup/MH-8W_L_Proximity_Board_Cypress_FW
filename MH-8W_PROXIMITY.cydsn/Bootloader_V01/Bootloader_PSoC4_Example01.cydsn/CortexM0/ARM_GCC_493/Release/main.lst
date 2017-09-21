@@ -1,0 +1,517 @@
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc2CbCnG.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.startup.main,"ax",%progbits
+  18              		.align	1
+  19              		.global	main
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	main, %function
+  23              	main:
+  24              	.LFB34:
+  25              		.file 1 "main.c"
+   1:main.c        **** /*******************************************************************************
+   2:main.c        **** * File: main.c
+   3:main.c        **** *
+   4:main.c        **** * Version: 1.0
+   5:main.c        **** *
+   6:main.c        **** * Description:
+   7:main.c        **** *  This example project demonstrates the basic operation of Bootloader component
+   8:main.c        **** *
+   9:main.c        **** ********************************************************************************
+  10:main.c        **** * Copyright 2014, Cypress Semiconductor Corporation. All rights reserved.
+  11:main.c        **** * This software is owned by Cypress Semiconductor Corporation and is protected
+  12:main.c        **** * by and subject to worldwide patent and copyright laws and treaties.
+  13:main.c        **** * Therefore, you may use this software only as provided in the license agreement
+  14:main.c        **** * accompanying the software package from which you obtained this software.
+  15:main.c        **** * CYPRESS AND ITS SUPPLIERS MAKE NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  16:main.c        **** * WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT,
+  17:main.c        **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  18:main.c        **** *******************************************************************************/
+  19:main.c        **** #include <project.h>
+  20:main.c        **** 
+  21:main.c        **** int main()
+  22:main.c        **** {
+  26              		.loc 1 22 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+  23:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  24:main.c        **** 
+  25:main.c        ****     CyGlobalIntEnable;
+  32              		.loc 1 25 0
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc2CbCnG.s 			page 2
+
+
+  33              	@ 25 "main.c" 1
+  34 0002 62B6     		CPSIE   i
+  35              	@ 0 "" 2
+  26:main.c        **** 
+  27:main.c        ****     /* Turn on blue LED */
+  28:main.c        ****     Bootloader_Status_Write(0u);
+  36              		.loc 1 28 0
+  37              		.code	16
+  38 0004 0020     		mov	r0, #0
+  39 0006 FFF7FEFF 		bl	Bootloader_Status_Write
+  40              	.LVL0:
+  29:main.c        **** 
+  30:main.c        ****     /* Start bootloader communication */
+  31:main.c        ****     Bootloader_Start();
+  41              		.loc 1 31 0
+  42 000a FFF7FEFF 		bl	Bootloader_Start
+  43              	.LVL1:
+  44              	.L2:
+  32:main.c        **** 
+  33:main.c        ****     for(;;) 
+  34:main.c        ****     {
+  35:main.c        ****         /* Place your application code here. */
+  36:main.c        ****     }
+  45              		.loc 1 36 0 discriminator 1
+  46 000e FEE7     		b	.L2
+  47              		.cfi_endproc
+  48              	.LFE34:
+  49              		.size	main, .-main
+  50              		.text
+  51              	.Letext0:
+  52              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+  53              		.file 3 "Generated_Source\\PSoC4/Bootloader_Status.h"
+  54              		.file 4 "Generated_Source\\PSoC4/Bootloader.h"
+  55              		.section	.debug_info,"",%progbits
+  56              	.Ldebug_info0:
+  57 0000 DE000000 		.4byte	0xde
+  58 0004 0400     		.2byte	0x4
+  59 0006 00000000 		.4byte	.Ldebug_abbrev0
+  60 000a 04       		.byte	0x4
+  61 000b 01       		.uleb128 0x1
+  62 000c 4D000000 		.4byte	.LASF13
+  63 0010 01       		.byte	0x1
+  64 0011 2E000000 		.4byte	.LASF14
+  65 0015 04010000 		.4byte	.LASF15
+  66 0019 00000000 		.4byte	.Ldebug_ranges0+0
+  67 001d 00000000 		.4byte	0
+  68 0021 00000000 		.4byte	.Ldebug_line0
+  69 0025 02       		.uleb128 0x2
+  70 0026 01       		.byte	0x1
+  71 0027 06       		.byte	0x6
+  72 0028 A3010000 		.4byte	.LASF0
+  73 002c 02       		.uleb128 0x2
+  74 002d 01       		.byte	0x1
+  75 002e 08       		.byte	0x8
+  76 002f 69010000 		.4byte	.LASF1
+  77 0033 02       		.uleb128 0x2
+  78 0034 02       		.byte	0x2
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc2CbCnG.s 			page 3
+
+
+  79 0035 05       		.byte	0x5
+  80 0036 BA010000 		.4byte	.LASF2
+  81 003a 02       		.uleb128 0x2
+  82 003b 02       		.byte	0x2
+  83 003c 07       		.byte	0x7
+  84 003d 0E000000 		.4byte	.LASF3
+  85 0041 02       		.uleb128 0x2
+  86 0042 04       		.byte	0x4
+  87 0043 05       		.byte	0x5
+  88 0044 7C010000 		.4byte	.LASF4
+  89 0048 02       		.uleb128 0x2
+  90 0049 04       		.byte	0x4
+  91 004a 07       		.byte	0x7
+  92 004b DB000000 		.4byte	.LASF5
+  93 004f 02       		.uleb128 0x2
+  94 0050 08       		.byte	0x8
+  95 0051 05       		.byte	0x5
+  96 0052 00000000 		.4byte	.LASF6
+  97 0056 02       		.uleb128 0x2
+  98 0057 08       		.byte	0x8
+  99 0058 07       		.byte	0x7
+ 100 0059 ED000000 		.4byte	.LASF7
+ 101 005d 03       		.uleb128 0x3
+ 102 005e 04       		.byte	0x4
+ 103 005f 05       		.byte	0x5
+ 104 0060 696E7400 		.ascii	"int\000"
+ 105 0064 02       		.uleb128 0x2
+ 106 0065 04       		.byte	0x4
+ 107 0066 07       		.byte	0x7
+ 108 0067 21000000 		.4byte	.LASF8
+ 109 006b 04       		.uleb128 0x4
+ 110 006c 9D010000 		.4byte	.LASF16
+ 111 0070 02       		.byte	0x2
+ 112 0071 B901     		.2byte	0x1b9
+ 113 0073 2C000000 		.4byte	0x2c
+ 114 0077 02       		.uleb128 0x2
+ 115 0078 04       		.byte	0x4
+ 116 0079 04       		.byte	0x4
+ 117 007a B4010000 		.4byte	.LASF9
+ 118 007e 02       		.uleb128 0x2
+ 119 007f 08       		.byte	0x8
+ 120 0080 04       		.byte	0x4
+ 121 0081 96010000 		.4byte	.LASF10
+ 122 0085 02       		.uleb128 0x2
+ 123 0086 01       		.byte	0x1
+ 124 0087 08       		.byte	0x8
+ 125 0088 77010000 		.4byte	.LASF11
+ 126 008c 02       		.uleb128 0x2
+ 127 008d 04       		.byte	0x4
+ 128 008e 07       		.byte	0x7
+ 129 008f C4010000 		.4byte	.LASF12
+ 130 0093 05       		.uleb128 0x5
+ 131 0094 AF010000 		.4byte	.LASF17
+ 132 0098 01       		.byte	0x1
+ 133 0099 15       		.byte	0x15
+ 134 009a 5D000000 		.4byte	0x5d
+ 135 009e 00000000 		.4byte	.LFB34
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc2CbCnG.s 			page 4
+
+
+ 136 00a2 10000000 		.4byte	.LFE34-.LFB34
+ 137 00a6 01       		.uleb128 0x1
+ 138 00a7 9C       		.byte	0x9c
+ 139 00a8 C9000000 		.4byte	0xc9
+ 140 00ac 06       		.uleb128 0x6
+ 141 00ad 0A000000 		.4byte	.LVL0
+ 142 00b1 C9000000 		.4byte	0xc9
+ 143 00b5 BF000000 		.4byte	0xbf
+ 144 00b9 07       		.uleb128 0x7
+ 145 00ba 01       		.uleb128 0x1
+ 146 00bb 50       		.byte	0x50
+ 147 00bc 01       		.uleb128 0x1
+ 148 00bd 30       		.byte	0x30
+ 149 00be 00       		.byte	0
+ 150 00bf 08       		.uleb128 0x8
+ 151 00c0 0E000000 		.4byte	.LVL1
+ 152 00c4 DA000000 		.4byte	0xda
+ 153 00c8 00       		.byte	0
+ 154 00c9 09       		.uleb128 0x9
+ 155 00ca 35000000 		.4byte	.LASF18
+ 156 00ce 03       		.byte	0x3
+ 157 00cf 33       		.byte	0x33
+ 158 00d0 DA000000 		.4byte	0xda
+ 159 00d4 0A       		.uleb128 0xa
+ 160 00d5 6B000000 		.4byte	0x6b
+ 161 00d9 00       		.byte	0
+ 162 00da 0B       		.uleb128 0xb
+ 163 00db 85010000 		.4byte	.LASF19
+ 164 00df 04       		.byte	0x4
+ 165 00e0 E6       		.byte	0xe6
+ 166 00e1 00       		.byte	0
+ 167              		.section	.debug_abbrev,"",%progbits
+ 168              	.Ldebug_abbrev0:
+ 169 0000 01       		.uleb128 0x1
+ 170 0001 11       		.uleb128 0x11
+ 171 0002 01       		.byte	0x1
+ 172 0003 25       		.uleb128 0x25
+ 173 0004 0E       		.uleb128 0xe
+ 174 0005 13       		.uleb128 0x13
+ 175 0006 0B       		.uleb128 0xb
+ 176 0007 03       		.uleb128 0x3
+ 177 0008 0E       		.uleb128 0xe
+ 178 0009 1B       		.uleb128 0x1b
+ 179 000a 0E       		.uleb128 0xe
+ 180 000b 55       		.uleb128 0x55
+ 181 000c 17       		.uleb128 0x17
+ 182 000d 11       		.uleb128 0x11
+ 183 000e 01       		.uleb128 0x1
+ 184 000f 10       		.uleb128 0x10
+ 185 0010 17       		.uleb128 0x17
+ 186 0011 00       		.byte	0
+ 187 0012 00       		.byte	0
+ 188 0013 02       		.uleb128 0x2
+ 189 0014 24       		.uleb128 0x24
+ 190 0015 00       		.byte	0
+ 191 0016 0B       		.uleb128 0xb
+ 192 0017 0B       		.uleb128 0xb
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc2CbCnG.s 			page 5
+
+
+ 193 0018 3E       		.uleb128 0x3e
+ 194 0019 0B       		.uleb128 0xb
+ 195 001a 03       		.uleb128 0x3
+ 196 001b 0E       		.uleb128 0xe
+ 197 001c 00       		.byte	0
+ 198 001d 00       		.byte	0
+ 199 001e 03       		.uleb128 0x3
+ 200 001f 24       		.uleb128 0x24
+ 201 0020 00       		.byte	0
+ 202 0021 0B       		.uleb128 0xb
+ 203 0022 0B       		.uleb128 0xb
+ 204 0023 3E       		.uleb128 0x3e
+ 205 0024 0B       		.uleb128 0xb
+ 206 0025 03       		.uleb128 0x3
+ 207 0026 08       		.uleb128 0x8
+ 208 0027 00       		.byte	0
+ 209 0028 00       		.byte	0
+ 210 0029 04       		.uleb128 0x4
+ 211 002a 16       		.uleb128 0x16
+ 212 002b 00       		.byte	0
+ 213 002c 03       		.uleb128 0x3
+ 214 002d 0E       		.uleb128 0xe
+ 215 002e 3A       		.uleb128 0x3a
+ 216 002f 0B       		.uleb128 0xb
+ 217 0030 3B       		.uleb128 0x3b
+ 218 0031 05       		.uleb128 0x5
+ 219 0032 49       		.uleb128 0x49
+ 220 0033 13       		.uleb128 0x13
+ 221 0034 00       		.byte	0
+ 222 0035 00       		.byte	0
+ 223 0036 05       		.uleb128 0x5
+ 224 0037 2E       		.uleb128 0x2e
+ 225 0038 01       		.byte	0x1
+ 226 0039 3F       		.uleb128 0x3f
+ 227 003a 19       		.uleb128 0x19
+ 228 003b 03       		.uleb128 0x3
+ 229 003c 0E       		.uleb128 0xe
+ 230 003d 3A       		.uleb128 0x3a
+ 231 003e 0B       		.uleb128 0xb
+ 232 003f 3B       		.uleb128 0x3b
+ 233 0040 0B       		.uleb128 0xb
+ 234 0041 49       		.uleb128 0x49
+ 235 0042 13       		.uleb128 0x13
+ 236 0043 11       		.uleb128 0x11
+ 237 0044 01       		.uleb128 0x1
+ 238 0045 12       		.uleb128 0x12
+ 239 0046 06       		.uleb128 0x6
+ 240 0047 40       		.uleb128 0x40
+ 241 0048 18       		.uleb128 0x18
+ 242 0049 9742     		.uleb128 0x2117
+ 243 004b 19       		.uleb128 0x19
+ 244 004c 01       		.uleb128 0x1
+ 245 004d 13       		.uleb128 0x13
+ 246 004e 00       		.byte	0
+ 247 004f 00       		.byte	0
+ 248 0050 06       		.uleb128 0x6
+ 249 0051 898201   		.uleb128 0x4109
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc2CbCnG.s 			page 6
+
+
+ 250 0054 01       		.byte	0x1
+ 251 0055 11       		.uleb128 0x11
+ 252 0056 01       		.uleb128 0x1
+ 253 0057 31       		.uleb128 0x31
+ 254 0058 13       		.uleb128 0x13
+ 255 0059 01       		.uleb128 0x1
+ 256 005a 13       		.uleb128 0x13
+ 257 005b 00       		.byte	0
+ 258 005c 00       		.byte	0
+ 259 005d 07       		.uleb128 0x7
+ 260 005e 8A8201   		.uleb128 0x410a
+ 261 0061 00       		.byte	0
+ 262 0062 02       		.uleb128 0x2
+ 263 0063 18       		.uleb128 0x18
+ 264 0064 9142     		.uleb128 0x2111
+ 265 0066 18       		.uleb128 0x18
+ 266 0067 00       		.byte	0
+ 267 0068 00       		.byte	0
+ 268 0069 08       		.uleb128 0x8
+ 269 006a 898201   		.uleb128 0x4109
+ 270 006d 00       		.byte	0
+ 271 006e 11       		.uleb128 0x11
+ 272 006f 01       		.uleb128 0x1
+ 273 0070 31       		.uleb128 0x31
+ 274 0071 13       		.uleb128 0x13
+ 275 0072 00       		.byte	0
+ 276 0073 00       		.byte	0
+ 277 0074 09       		.uleb128 0x9
+ 278 0075 2E       		.uleb128 0x2e
+ 279 0076 01       		.byte	0x1
+ 280 0077 3F       		.uleb128 0x3f
+ 281 0078 19       		.uleb128 0x19
+ 282 0079 03       		.uleb128 0x3
+ 283 007a 0E       		.uleb128 0xe
+ 284 007b 3A       		.uleb128 0x3a
+ 285 007c 0B       		.uleb128 0xb
+ 286 007d 3B       		.uleb128 0x3b
+ 287 007e 0B       		.uleb128 0xb
+ 288 007f 27       		.uleb128 0x27
+ 289 0080 19       		.uleb128 0x19
+ 290 0081 3C       		.uleb128 0x3c
+ 291 0082 19       		.uleb128 0x19
+ 292 0083 01       		.uleb128 0x1
+ 293 0084 13       		.uleb128 0x13
+ 294 0085 00       		.byte	0
+ 295 0086 00       		.byte	0
+ 296 0087 0A       		.uleb128 0xa
+ 297 0088 05       		.uleb128 0x5
+ 298 0089 00       		.byte	0
+ 299 008a 49       		.uleb128 0x49
+ 300 008b 13       		.uleb128 0x13
+ 301 008c 00       		.byte	0
+ 302 008d 00       		.byte	0
+ 303 008e 0B       		.uleb128 0xb
+ 304 008f 2E       		.uleb128 0x2e
+ 305 0090 00       		.byte	0
+ 306 0091 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc2CbCnG.s 			page 7
+
+
+ 307 0092 19       		.uleb128 0x19
+ 308 0093 03       		.uleb128 0x3
+ 309 0094 0E       		.uleb128 0xe
+ 310 0095 3A       		.uleb128 0x3a
+ 311 0096 0B       		.uleb128 0xb
+ 312 0097 3B       		.uleb128 0x3b
+ 313 0098 0B       		.uleb128 0xb
+ 314 0099 27       		.uleb128 0x27
+ 315 009a 19       		.uleb128 0x19
+ 316 009b 3C       		.uleb128 0x3c
+ 317 009c 19       		.uleb128 0x19
+ 318 009d 00       		.byte	0
+ 319 009e 00       		.byte	0
+ 320 009f 00       		.byte	0
+ 321              		.section	.debug_aranges,"",%progbits
+ 322 0000 1C000000 		.4byte	0x1c
+ 323 0004 0200     		.2byte	0x2
+ 324 0006 00000000 		.4byte	.Ldebug_info0
+ 325 000a 04       		.byte	0x4
+ 326 000b 00       		.byte	0
+ 327 000c 0000     		.2byte	0
+ 328 000e 0000     		.2byte	0
+ 329 0010 00000000 		.4byte	.LFB34
+ 330 0014 10000000 		.4byte	.LFE34-.LFB34
+ 331 0018 00000000 		.4byte	0
+ 332 001c 00000000 		.4byte	0
+ 333              		.section	.debug_ranges,"",%progbits
+ 334              	.Ldebug_ranges0:
+ 335 0000 00000000 		.4byte	.LFB34
+ 336 0004 10000000 		.4byte	.LFE34
+ 337 0008 00000000 		.4byte	0
+ 338 000c 00000000 		.4byte	0
+ 339              		.section	.debug_line,"",%progbits
+ 340              	.Ldebug_line0:
+ 341 0000 85000000 		.section	.debug_str,"MS",%progbits,1
+ 341      02006800 
+ 341      00000201 
+ 341      FB0E0D00 
+ 341      01010101 
+ 342              	.LASF6:
+ 343 0000 6C6F6E67 		.ascii	"long long int\000"
+ 343      206C6F6E 
+ 343      6720696E 
+ 343      7400
+ 344              	.LASF3:
+ 345 000e 73686F72 		.ascii	"short unsigned int\000"
+ 345      7420756E 
+ 345      7369676E 
+ 345      65642069 
+ 345      6E7400
+ 346              	.LASF8:
+ 347 0021 756E7369 		.ascii	"unsigned int\000"
+ 347      676E6564 
+ 347      20696E74 
+ 347      00
+ 348              	.LASF14:
+ 349 002e 6D61696E 		.ascii	"main.c\000"
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc2CbCnG.s 			page 8
+
+
+ 349      2E6300
+ 350              	.LASF18:
+ 351 0035 426F6F74 		.ascii	"Bootloader_Status_Write\000"
+ 351      6C6F6164 
+ 351      65725F53 
+ 351      74617475 
+ 351      735F5772 
+ 352              	.LASF13:
+ 353 004d 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 353      4320342E 
+ 353      392E3320 
+ 353      32303135 
+ 353      30333033 
+ 354 0080 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 354      20726576 
+ 354      6973696F 
+ 354      6E203232 
+ 354      31323230 
+ 355 00b3 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 355      66756E63 
+ 355      74696F6E 
+ 355      2D736563 
+ 355      74696F6E 
+ 356              	.LASF5:
+ 357 00db 6C6F6E67 		.ascii	"long unsigned int\000"
+ 357      20756E73 
+ 357      69676E65 
+ 357      6420696E 
+ 357      7400
+ 358              	.LASF7:
+ 359 00ed 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 359      206C6F6E 
+ 359      6720756E 
+ 359      7369676E 
+ 359      65642069 
+ 360              	.LASF15:
+ 361 0104 433A5C55 		.ascii	"C:\\Users\\Tim Chen\\Desktop\\test\\MH-8W_PROXIMITY"
+ 361      73657273 
+ 361      5C54696D 
+ 361      20436865 
+ 361      6E5C4465 
+ 362 0132 2E637964 		.ascii	".cydsn\\Bootloader_V01\\Bootloader_PSoC4_Example01."
+ 362      736E5C42 
+ 362      6F6F746C 
+ 362      6F616465 
+ 362      725F5630 
+ 363 0163 63796473 		.ascii	"cydsn\000"
+ 363      6E00
+ 364              	.LASF1:
+ 365 0169 756E7369 		.ascii	"unsigned char\000"
+ 365      676E6564 
+ 365      20636861 
+ 365      7200
+ 366              	.LASF11:
+ 367 0177 63686172 		.ascii	"char\000"
+ 367      00
+ 368              	.LASF4:
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc2CbCnG.s 			page 9
+
+
+ 369 017c 6C6F6E67 		.ascii	"long int\000"
+ 369      20696E74 
+ 369      00
+ 370              	.LASF19:
+ 371 0185 426F6F74 		.ascii	"Bootloader_Start\000"
+ 371      6C6F6164 
+ 371      65725F53 
+ 371      74617274 
+ 371      00
+ 372              	.LASF10:
+ 373 0196 646F7562 		.ascii	"double\000"
+ 373      6C6500
+ 374              	.LASF16:
+ 375 019d 75696E74 		.ascii	"uint8\000"
+ 375      3800
+ 376              	.LASF0:
+ 377 01a3 7369676E 		.ascii	"signed char\000"
+ 377      65642063 
+ 377      68617200 
+ 378              	.LASF17:
+ 379 01af 6D61696E 		.ascii	"main\000"
+ 379      00
+ 380              	.LASF9:
+ 381 01b4 666C6F61 		.ascii	"float\000"
+ 381      7400
+ 382              	.LASF2:
+ 383 01ba 73686F72 		.ascii	"short int\000"
+ 383      7420696E 
+ 383      7400
+ 384              	.LASF12:
+ 385 01c4 73697A65 		.ascii	"sizetype\000"
+ 385      74797065 
+ 385      00
+ 386              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

@@ -1,0 +1,2157 @@
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"I2C_Slave_I2C_BOOT.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.I2C_Slave_I2CResposeInsert,"ax",%progbits
+  18              		.align	1
+  19              		.code	16
+  20              		.thumb_func
+  21              		.type	I2C_Slave_I2CResposeInsert, %function
+  22              	I2C_Slave_I2CResposeInsert:
+  23              	.LFB5:
+  24              		.file 1 "Generated_Source\\PSoC4\\I2C_Slave_I2C_BOOT.c"
+   1:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * \file I2C_Slave_I2C_BOOT.c
+   3:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * \version 3.20
+   4:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+   5:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * \brief
+   6:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  This file provides the source code of the bootloader communication APIs
+   7:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  for the SCB Component I2C mode.
+   8:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+   9:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * Note:
+  10:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+  11:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * \copyright
+  13:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * Copyright 2013-2016, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *******************************************************************************/
+  18:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  19:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** #include "I2C_Slave_BOOT.h"
+  20:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** #include "I2C_Slave_I2C_PVT.h"
+  21:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  22:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** #if defined(CYDEV_BOOTLOADER_IO_COMP) && (I2C_Slave_I2C_BTLDR_COMM_ENABLED)
+  23:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  24:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /***************************************
+  25:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *    Private I/O Component Vars
+  26:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** ***************************************/
+  27:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  28:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /* Writes to this buffer */
+  29:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** static uint8 I2C_Slave_slReadBuf[I2C_Slave_I2C_BTLDR_SIZEOF_READ_BUFFER];
+  30:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  31:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /* Reads from this buffer */
+  32:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** static uint8 I2C_Slave_slWriteBuf[I2C_Slave_I2C_BTLDR_SIZEOF_WRITE_BUFFER];
+  33:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 2
+
+
+  34:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /* Flag to release buffer to be read */
+  35:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** static uint32 I2C_Slave_applyBuffer;
+  36:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  37:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  38:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /***************************************
+  39:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *    Private Function Prototypes
+  40:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** ***************************************/
+  41:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  42:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** static void I2C_Slave_I2CResposeInsert(void);
+  43:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  44:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  45:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /*******************************************************************************
+  46:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * Function Name: I2C_Slave_I2CCyBtldrCommStart
+  47:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** ****************************************************************************//**
+  48:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+  49:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  Starts the I2C component and enables its interrupt.
+  50:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  Every incoming I2C write transaction is treated as a command for the
+  51:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  bootloader.
+  52:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  Every incoming I2C read transaction returns 0xFF until the bootloader
+  53:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  provides a response to the executed command.
+  54:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+  55:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * \globalvars
+  56:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  I2C_Slave_applyBuffer - the flag to release the buffer with a response
+  57:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  to be read by the host.
+  58:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+  59:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *******************************************************************************/
+  60:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** void I2C_Slave_I2CCyBtldrCommStart(void)
+  61:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** {
+  62:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_I2CSlaveInitWriteBuf(I2C_Slave_slWriteBuf, I2C_Slave_I2C_BTLDR_SIZEOF_WRITE_BUFFER);
+  63:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_I2CSlaveInitReadBuf (I2C_Slave_slReadBuf, 0u);
+  64:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  65:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_SetCustomInterruptHandler(&I2C_Slave_I2CResposeInsert);
+  66:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_applyBuffer = 0u;
+  67:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  68:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_Start();
+  69:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** }
+  70:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  71:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  72:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /*******************************************************************************
+  73:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * Function Name: I2C_Slave_I2CCyBtldrCommStop
+  74:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** ****************************************************************************//**
+  75:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+  76:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  Disables the I2C component.
+  77:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+  78:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *******************************************************************************/
+  79:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** void I2C_Slave_I2CCyBtldrCommStop(void)
+  80:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** {
+  81:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_Stop();
+  82:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** }
+  83:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  84:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  85:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /*******************************************************************************
+  86:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * Function Name: I2C_Slave_I2CCyBtldrCommReset
+  87:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** ****************************************************************************//**
+  88:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+  89:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  Resets read and write I2C buffers to the initial state and resets the slave
+  90:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  status.
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 3
+
+
+  91:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+  92:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * \globalvars
+  93:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  I2C_Slave_slRdBufSize - used to store slave read buffer size.
+  94:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  I2C_Slave_slRdBufIndex - used to store the current index within the
+  95:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  slave read buffer.
+  96:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  I2C_Slave_slWrBufIndex - used to store current index within slave
+  97:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  write buffer.
+  98:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  I2C_Slave_slStatus  - used to store current status of I2C slave.
+  99:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 100:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *******************************************************************************/
+ 101:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** void I2C_Slave_I2CCyBtldrCommReset(void)
+ 102:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** {
+ 103:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     /* Make read buffer full */
+ 104:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_slRdBufSize = 0u;
+ 105:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 106:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     /* Reset write buffer and Read buffer */
+ 107:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_slRdBufIndex = 0u;
+ 108:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_slWrBufIndex = 0u;
+ 109:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 110:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     /* Clear read and write status */
+ 111:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_slStatus = 0u;
+ 112:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** }
+ 113:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 114:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 115:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /*******************************************************************************
+ 116:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * Function Name: I2C_Slave_I2CCyBtldrCommRead
+ 117:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** ****************************************************************************//**
+ 118:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 119:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  Allows the caller to read data from the bootloader host (the host writes the
+ 120:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  data). The function handles polling to allow a block of data to be completely
+ 121:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  received from the host device.
+ 122:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 123:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  \param pData: Pointer to storage for the block of data to be read from the
+ 124:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   bootloader host
+ 125:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  \param size: Number of bytes to be read.
+ 126:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  \param count: Pointer to the variable to write the number of bytes actually
+ 127:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   read.
+ 128:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  \param timeOut: Number of units in 10 ms to wait before returning
+ 129:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   because of a timeout.
+ 130:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 131:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  \return
+ 132:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   Returns CYRET_SUCCESS if no problem was encountered or returns the value
+ 133:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   that best describes the problem. For more information refer to the
+ 134:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   "Return Codes" section of the System Reference Guide.
+ 135:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 136:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * \globalvars
+ 137:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  I2C_Slave_slStatus  - used to store current status of I2C slave.
+ 138:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  I2C_Slave_slWriteBuf - used to store received command.
+ 139:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  I2C_Slave_slWrBufIndex - used to store current index within slave
+ 140:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  write buffer.
+ 141:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 142:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *******************************************************************************/
+ 143:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** cystatus I2C_Slave_I2CCyBtldrCommRead(uint8 pData[], uint16 size, uint16 * count, uint8 timeOut)
+ 144:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** {
+ 145:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     cystatus status;
+ 146:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     uint32 timeoutMs;
+ 147:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 4
+
+
+ 148:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     status = CYRET_BAD_PARAM;
+ 149:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 150:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     if ((NULL != pData) && (size > 0u))
+ 151:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     {
+ 152:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         status = CYRET_TIMEOUT;
+ 153:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         timeoutMs = ((uint32) 10u * timeOut); /* Convert from 10mS check to 1mS checks */
+ 154:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 155:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         while (0u != timeoutMs)
+ 156:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         {
+ 157:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             /* Check if host complete write */
+ 158:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             if (0u != (I2C_Slave_I2C_SSTAT_WR_CMPLT & I2C_Slave_slStatus))
+ 159:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             {
+ 160:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 /* Copy number of written bytes */
+ 161:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 *count = (uint16) I2C_Slave_slWrBufIndex;
+ 162:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 163:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 /* Clear slave status and write index */
+ 164:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 I2C_Slave_slStatus = 0u;
+ 165:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 I2C_Slave_slWrBufIndex = 0u;
+ 166:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 167:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 /* Copy command into bootloader buffer */
+ 168:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 (void) memcpy((void *) pData, (const void *) I2C_Slave_slWriteBuf,
+ 169:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                                               I2C_Slave_BYTES_TO_COPY(*count, size));
+ 170:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 171:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 status = CYRET_SUCCESS;
+ 172:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 break;
+ 173:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             }
+ 174:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 175:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             CyDelay(I2C_Slave_WAIT_1_MS);
+ 176:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             --timeoutMs;
+ 177:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         }
+ 178:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     }
+ 179:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 180:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     return(status);
+ 181:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** }
+ 182:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 183:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 184:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /*******************************************************************************
+ 185:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * Function Name: I2C_Slave_I2CCyBtldrCommWrite
+ 186:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** ****************************************************************************//**
+ 187:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 188:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  Allows the caller to write data to the bootloader host (the host reads the
+ 189:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  data). The function does not use timeout and returns after data has been
+ 190:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  copied into the slave read buffer. This data is available to be read by the
+ 191:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  bootloader host until following host data write.
+ 192:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 193:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  \param pData: Pointer to the block of data to be written to the bootloader
+ 194:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   host.
+ 195:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  \param size: Number of bytes to be written.
+ 196:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  \param count: Pointer to the variable to write the number of bytes actually
+ 197:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   written.
+ 198:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  \param timeOut: Number of units in 10 ms to wait before returning
+ 199:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   because of a timeout.
+ 200:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 201:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  \return
+ 202:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   Returns CYRET_SUCCESS if no problem was encountered or returns the value
+ 203:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   that best describes the problem. For more information refer to the
+ 204:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *   "Return Codes" section of the System Reference Guide.
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 5
+
+
+ 205:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 206:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * \globalvars
+ 207:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  I2C_Slave_applyBuffer - the flag to release the buffer with
+ 208:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  to be read by the host.
+ 209:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 210:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *******************************************************************************/
+ 211:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** cystatus I2C_Slave_I2CCyBtldrCommWrite(const uint8 pData[], uint16 size, uint16 * count, uint8 time
+ 212:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** {
+ 213:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     cystatus status;
+ 214:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 215:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     status = CYRET_BAD_PARAM;
+ 216:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 217:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     if ((NULL != pData) && (size > 0u))
+ 218:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     {
+ 219:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         /* Copy response into read buffer */
+ 220:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         *count = size;
+ 221:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         (void) memcpy((void *) I2C_Slave_slReadBuf, (const void *) pData, (uint32) size);
+ 222:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 223:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         /* Read buffer is ready to be released to host */
+ 224:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         I2C_Slave_applyBuffer = (uint32) size;
+ 225:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 226:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         if (0u != timeOut)
+ 227:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         {
+ 228:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             /* Suppress compiler warning */
+ 229:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         }
+ 230:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 231:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         status = CYRET_SUCCESS;
+ 232:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     }
+ 233:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 234:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     return(status);
+ 235:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** }
+ 236:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 237:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 238:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** /*******************************************************************************
+ 239:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * Function Name: I2C_Slave_I2CResposeInsert
+ 240:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** ****************************************************************************//**
+ 241:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 242:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  Releases the read buffer to be read when a response is copied to the buffer
+ 243:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  and a new read transaction starts.
+ 244:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  Closes the read buffer when write transaction is started.
+ 245:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 246:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** * \globalvars
+ 247:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  I2C_Slave_applyBuffer - the flag to release the buffer with a response
+ 248:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *  to be read by the host.
+ 249:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *
+ 250:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** *******************************************************************************/
+ 251:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** static void I2C_Slave_I2CResposeInsert(void)
+ 252:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** {
+  25              		.loc 1 252 0
+  26              		.cfi_startproc
+ 253:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     if (I2C_Slave_CHECK_INTR_SLAVE_MASKED(I2C_Slave_INTR_SLAVE_I2C_ADDR_MATCH))
+  27              		.loc 1 253 0
+  28 0000 0D4B     		ldr	r3, .L12
+  29 0002 1B68     		ldr	r3, [r3]
+  30 0004 5B06     		lsl	r3, r3, #25
+  31 0006 15D5     		bpl	.L1
+ 254:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     {
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 6
+
+
+ 255:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         if (I2C_Slave_CHECK_I2C_STATUS(I2C_Slave_I2C_STATUS_S_READ))
+  32              		.loc 1 255 0
+  33 0008 0C4B     		ldr	r3, .L12+4
+  34 000a 1B68     		ldr	r3, [r3]
+  35 000c DB06     		lsl	r3, r3, #27
+  36 000e 09D5     		bpl	.L3
+  37              	.LBB4:
+ 256:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         {
+ 257:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             /* Address phase, host reads: release read buffer */
+ 258:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             if (0u != I2C_Slave_applyBuffer)
+  38              		.loc 1 258 0
+  39 0010 0B4B     		ldr	r3, .L12+8
+  40 0012 1A68     		ldr	r2, [r3]
+  41 0014 002A     		cmp	r2, #0
+  42 0016 0DD0     		beq	.L1
+ 259:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             {
+ 260:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 I2C_Slave_slRdBufSize  = I2C_Slave_applyBuffer;
+  43              		.loc 1 260 0
+  44 0018 0A49     		ldr	r1, .L12+12
+  45 001a 0A60     		str	r2, [r1]
+ 261:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 I2C_Slave_slRdBufIndex = 0u;
+  46              		.loc 1 261 0
+  47 001c 0022     		mov	r2, #0
+  48 001e 0A49     		ldr	r1, .L12+16
+  49 0020 0A60     		str	r2, [r1]
+  50 0022 06E0     		b	.L10
+  51              	.L3:
+  52              	.LBE4:
+ 262:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 I2C_Slave_applyBuffer  = 0u;
+ 263:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             }
+ 264:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         }
+ 265:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         else
+ 266:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         {
+ 267:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             /* Address phase, host writes: close read buffer */
+ 268:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             if (I2C_Slave_slRdBufIndex != I2C_Slave_slRdBufSize)
+  53              		.loc 1 268 0
+  54 0024 084B     		ldr	r3, .L12+16
+  55 0026 074A     		ldr	r2, .L12+12
+  56 0028 1868     		ldr	r0, [r3]
+  57 002a 1168     		ldr	r1, [r2]
+  58 002c 8842     		cmp	r0, r1
+  59 002e 01D0     		beq	.L1
+ 269:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             {
+ 270:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 I2C_Slave_slRdBufIndex = I2C_Slave_slRdBufSize;
+  60              		.loc 1 270 0
+  61 0030 1268     		ldr	r2, [r2]
+  62              	.L10:
+  63 0032 1A60     		str	r2, [r3]
+  64              	.L1:
+ 271:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             }
+ 272:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         }
+ 273:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     }
+ 274:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** }
+  65              		.loc 1 274 0
+  66              		@ sp needed
+  67 0034 7047     		bx	lr
+  68              	.L13:
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 7
+
+
+  69 0036 C046     		.align	2
+  70              	.L12:
+  71 0038 4C0F0640 		.word	1074138956
+  72 003c 64000640 		.word	1074135140
+  73 0040 00000000 		.word	.LANCHOR0
+  74 0044 00000000 		.word	I2C_Slave_slRdBufSize
+  75 0048 00000000 		.word	I2C_Slave_slRdBufIndex
+  76              		.cfi_endproc
+  77              	.LFE5:
+  78              		.size	I2C_Slave_I2CResposeInsert, .-I2C_Slave_I2CResposeInsert
+  79              		.section	.text.I2C_Slave_I2CCyBtldrCommStart,"ax",%progbits
+  80              		.align	1
+  81              		.global	I2C_Slave_I2CCyBtldrCommStart
+  82              		.code	16
+  83              		.thumb_func
+  84              		.type	I2C_Slave_I2CCyBtldrCommStart, %function
+  85              	I2C_Slave_I2CCyBtldrCommStart:
+  86              	.LFB0:
+  61:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_I2CSlaveInitWriteBuf(I2C_Slave_slWriteBuf, I2C_Slave_I2C_BTLDR_SIZEOF_WRITE_BUFFER);
+  87              		.loc 1 61 0
+  88              		.cfi_startproc
+  89 0000 10B5     		push	{r4, lr}
+  90              		.cfi_def_cfa_offset 8
+  91              		.cfi_offset 4, -8
+  92              		.cfi_offset 14, -4
+  62:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_I2CSlaveInitReadBuf (I2C_Slave_slReadBuf, 0u);
+  93              		.loc 1 62 0
+  94 0002 094C     		ldr	r4, .L15
+  95 0004 4021     		mov	r1, #64
+  96 0006 201D     		add	r0, r4, #4
+  97 0008 FFF7FEFF 		bl	I2C_Slave_I2CSlaveInitWriteBuf
+  98              	.LVL0:
+  63:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+  99              		.loc 1 63 0
+ 100 000c 201C     		mov	r0, r4
+ 101 000e 0021     		mov	r1, #0
+ 102 0010 4430     		add	r0, r0, #68
+ 103 0012 FFF7FEFF 		bl	I2C_Slave_I2CSlaveInitReadBuf
+ 104              	.LVL1:
+  65:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_applyBuffer = 0u;
+ 105              		.loc 1 65 0
+ 106 0016 0548     		ldr	r0, .L15+4
+ 107 0018 FFF7FEFF 		bl	I2C_Slave_SetCustomInterruptHandler
+ 108              	.LVL2:
+  66:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 109              		.loc 1 66 0
+ 110 001c 0023     		mov	r3, #0
+  69:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 111              		.loc 1 69 0
+ 112              		@ sp needed
+  66:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 113              		.loc 1 66 0
+ 114 001e 2360     		str	r3, [r4]
+  68:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** }
+ 115              		.loc 1 68 0
+ 116 0020 FFF7FEFF 		bl	I2C_Slave_Start
+ 117              	.LVL3:
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 8
+
+
+  69:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 118              		.loc 1 69 0
+ 119 0024 10BD     		pop	{r4, pc}
+ 120              	.L16:
+ 121 0026 C046     		.align	2
+ 122              	.L15:
+ 123 0028 00000000 		.word	.LANCHOR0
+ 124 002c 00000000 		.word	I2C_Slave_I2CResposeInsert
+ 125              		.cfi_endproc
+ 126              	.LFE0:
+ 127              		.size	I2C_Slave_I2CCyBtldrCommStart, .-I2C_Slave_I2CCyBtldrCommStart
+ 128              		.section	.text.I2C_Slave_I2CCyBtldrCommStop,"ax",%progbits
+ 129              		.align	1
+ 130              		.global	I2C_Slave_I2CCyBtldrCommStop
+ 131              		.code	16
+ 132              		.thumb_func
+ 133              		.type	I2C_Slave_I2CCyBtldrCommStop, %function
+ 134              	I2C_Slave_I2CCyBtldrCommStop:
+ 135              	.LFB1:
+  80:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_Stop();
+ 136              		.loc 1 80 0
+ 137              		.cfi_startproc
+ 138 0000 08B5     		push	{r3, lr}
+ 139              		.cfi_def_cfa_offset 8
+ 140              		.cfi_offset 3, -8
+ 141              		.cfi_offset 14, -4
+  81:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** }
+ 142              		.loc 1 81 0
+ 143 0002 FFF7FEFF 		bl	I2C_Slave_Stop
+ 144              	.LVL4:
+  82:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 145              		.loc 1 82 0
+ 146              		@ sp needed
+ 147 0006 08BD     		pop	{r3, pc}
+ 148              		.cfi_endproc
+ 149              	.LFE1:
+ 150              		.size	I2C_Slave_I2CCyBtldrCommStop, .-I2C_Slave_I2CCyBtldrCommStop
+ 151              		.section	.text.I2C_Slave_I2CCyBtldrCommReset,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	I2C_Slave_I2CCyBtldrCommReset
+ 154              		.code	16
+ 155              		.thumb_func
+ 156              		.type	I2C_Slave_I2CCyBtldrCommReset, %function
+ 157              	I2C_Slave_I2CCyBtldrCommReset:
+ 158              	.LFB2:
+ 102:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     /* Make read buffer full */
+ 159              		.loc 1 102 0
+ 160              		.cfi_startproc
+ 104:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 161              		.loc 1 104 0
+ 162 0000 0023     		mov	r3, #0
+ 163 0002 044A     		ldr	r2, .L19
+ 112:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 164              		.loc 1 112 0
+ 165              		@ sp needed
+ 104:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 166              		.loc 1 104 0
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 9
+
+
+ 167 0004 1360     		str	r3, [r2]
+ 107:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     I2C_Slave_slWrBufIndex = 0u;
+ 168              		.loc 1 107 0
+ 169 0006 044A     		ldr	r2, .L19+4
+ 170 0008 1360     		str	r3, [r2]
+ 108:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 171              		.loc 1 108 0
+ 172 000a 044A     		ldr	r2, .L19+8
+ 173 000c 1360     		str	r3, [r2]
+ 111:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** }
+ 174              		.loc 1 111 0
+ 175 000e 044A     		ldr	r2, .L19+12
+ 176 0010 1370     		strb	r3, [r2]
+ 112:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 177              		.loc 1 112 0
+ 178 0012 7047     		bx	lr
+ 179              	.L20:
+ 180              		.align	2
+ 181              	.L19:
+ 182 0014 00000000 		.word	I2C_Slave_slRdBufSize
+ 183 0018 00000000 		.word	I2C_Slave_slRdBufIndex
+ 184 001c 00000000 		.word	I2C_Slave_slWrBufIndex
+ 185 0020 00000000 		.word	I2C_Slave_slStatus
+ 186              		.cfi_endproc
+ 187              	.LFE2:
+ 188              		.size	I2C_Slave_I2CCyBtldrCommReset, .-I2C_Slave_I2CCyBtldrCommReset
+ 189              		.section	.text.I2C_Slave_I2CCyBtldrCommRead,"ax",%progbits
+ 190              		.align	1
+ 191              		.global	I2C_Slave_I2CCyBtldrCommRead
+ 192              		.code	16
+ 193              		.thumb_func
+ 194              		.type	I2C_Slave_I2CCyBtldrCommRead, %function
+ 195              	I2C_Slave_I2CCyBtldrCommRead:
+ 196              	.LFB3:
+ 144:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     cystatus status;
+ 197              		.loc 1 144 0
+ 198              		.cfi_startproc
+ 199              	.LVL5:
+ 200 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 201              		.cfi_def_cfa_offset 24
+ 202              		.cfi_offset 3, -24
+ 203              		.cfi_offset 4, -20
+ 204              		.cfi_offset 5, -16
+ 205              		.cfi_offset 6, -12
+ 206              		.cfi_offset 7, -8
+ 207              		.cfi_offset 14, -4
+ 144:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     cystatus status;
+ 208              		.loc 1 144 0
+ 209 0002 051C     		mov	r5, r0
+ 210 0004 0C1C     		mov	r4, r1
+ 211 0006 161C     		mov	r6, r2
+ 148:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 212              		.loc 1 148 0
+ 213 0008 0120     		mov	r0, #1
+ 214              	.LVL6:
+ 150:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     {
+ 215              		.loc 1 150 0
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 10
+
+
+ 216 000a 002D     		cmp	r5, #0
+ 217 000c 22D0     		beq	.L22
+ 150:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     {
+ 218              		.loc 1 150 0 is_stmt 0 discriminator 1
+ 219 000e 0029     		cmp	r1, #0
+ 220 0010 20D0     		beq	.L22
+ 221              	.LVL7:
+ 153:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 222              		.loc 1 153 0 is_stmt 1
+ 223 0012 0A27     		mov	r7, #10
+ 224 0014 5F43     		mul	r7, r3
+ 225              	.LVL8:
+ 226              	.L23:
+ 227 0016 1020     		mov	r0, #16
+ 155:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         {
+ 228              		.loc 1 155 0
+ 229 0018 002F     		cmp	r7, #0
+ 230 001a 1BD0     		beq	.L22
+ 158:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             {
+ 231              		.loc 1 158 0
+ 232 001c 0E49     		ldr	r1, .L30
+ 233 001e 0B78     		ldrb	r3, [r1]
+ 234 0020 0342     		tst	r3, r0
+ 235 0022 12D0     		beq	.L24
+ 164:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 I2C_Slave_slWrBufIndex = 0u;
+ 236              		.loc 1 164 0
+ 237 0024 0020     		mov	r0, #0
+ 161:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 238              		.loc 1 161 0
+ 239 0026 0D4A     		ldr	r2, .L30+4
+ 240 0028 1368     		ldr	r3, [r2]
+ 241 002a 9BB2     		uxth	r3, r3
+ 242 002c 3380     		strh	r3, [r6]
+ 164:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 I2C_Slave_slWrBufIndex = 0u;
+ 243              		.loc 1 164 0
+ 244 002e 0870     		strb	r0, [r1]
+ 165:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 245              		.loc 1 165 0
+ 246 0030 1060     		str	r0, [r2]
+ 169:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 247              		.loc 1 169 0
+ 248 0032 221C     		add	r2, r4, #0
+ 249 0034 9C42     		cmp	r4, r3
+ 250 0036 00D9     		bls	.L25
+ 251 0038 1A1C     		add	r2, r3, #0
+ 252              	.L25:
+ 168:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                                               I2C_Slave_BYTES_TO_COPY(*count, size));
+ 253              		.loc 1 168 0
+ 254 003a 0949     		ldr	r1, .L30+8
+ 255 003c 92B2     		uxth	r2, r2
+ 256 003e 281C     		mov	r0, r5
+ 257 0040 0431     		add	r1, r1, #4
+ 258 0042 FFF7FEFF 		bl	memcpy
+ 259              	.LVL9:
+ 171:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****                 break;
+ 260              		.loc 1 171 0
+ 261 0046 0020     		mov	r0, #0
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 11
+
+
+ 172:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             }
+ 262              		.loc 1 172 0
+ 263 0048 04E0     		b	.L22
+ 264              	.LVL10:
+ 265              	.L24:
+ 175:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****             --timeoutMs;
+ 266              		.loc 1 175 0
+ 267 004a 0120     		mov	r0, #1
+ 268 004c FFF7FEFF 		bl	CyDelay
+ 269              	.LVL11:
+ 176:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         }
+ 270              		.loc 1 176 0
+ 271 0050 013F     		sub	r7, r7, #1
+ 272              	.LVL12:
+ 273 0052 E0E7     		b	.L23
+ 274              	.LVL13:
+ 275              	.L22:
+ 181:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 276              		.loc 1 181 0
+ 277              		@ sp needed
+ 278              	.LVL14:
+ 279              	.LVL15:
+ 280 0054 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 281              	.L31:
+ 282 0056 C046     		.align	2
+ 283              	.L30:
+ 284 0058 00000000 		.word	I2C_Slave_slStatus
+ 285 005c 00000000 		.word	I2C_Slave_slWrBufIndex
+ 286 0060 00000000 		.word	.LANCHOR0
+ 287              		.cfi_endproc
+ 288              	.LFE3:
+ 289              		.size	I2C_Slave_I2CCyBtldrCommRead, .-I2C_Slave_I2CCyBtldrCommRead
+ 290              		.section	.text.I2C_Slave_I2CCyBtldrCommWrite,"ax",%progbits
+ 291              		.align	1
+ 292              		.global	I2C_Slave_I2CCyBtldrCommWrite
+ 293              		.code	16
+ 294              		.thumb_func
+ 295              		.type	I2C_Slave_I2CCyBtldrCommWrite, %function
+ 296              	I2C_Slave_I2CCyBtldrCommWrite:
+ 297              	.LFB4:
+ 212:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     cystatus status;
+ 298              		.loc 1 212 0
+ 299              		.cfi_startproc
+ 300              	.LVL16:
+ 301 0000 38B5     		push	{r3, r4, r5, lr}
+ 302              		.cfi_def_cfa_offset 16
+ 303              		.cfi_offset 3, -16
+ 304              		.cfi_offset 4, -12
+ 305              		.cfi_offset 5, -8
+ 306              		.cfi_offset 14, -4
+ 212:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     cystatus status;
+ 307              		.loc 1 212 0
+ 308 0002 031C     		mov	r3, r0
+ 309              	.LVL17:
+ 310 0004 0C1C     		mov	r4, r1
+ 215:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 311              		.loc 1 215 0
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 12
+
+
+ 312 0006 0120     		mov	r0, #1
+ 313              	.LVL18:
+ 217:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     {
+ 314              		.loc 1 217 0
+ 315 0008 002B     		cmp	r3, #0
+ 316 000a 0BD0     		beq	.L33
+ 217:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     {
+ 317              		.loc 1 217 0 is_stmt 0 discriminator 1
+ 318 000c 0029     		cmp	r1, #0
+ 319 000e 09D0     		beq	.L33
+ 221:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 320              		.loc 1 221 0 is_stmt 1
+ 321 0010 054D     		ldr	r5, .L37
+ 220:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****         (void) memcpy((void *) I2C_Slave_slReadBuf, (const void *) pData, (uint32) size);
+ 322              		.loc 1 220 0
+ 323 0012 1180     		strh	r1, [r2]
+ 221:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 324              		.loc 1 221 0
+ 325 0014 281C     		mov	r0, r5
+ 326 0016 191C     		mov	r1, r3
+ 327              	.LVL19:
+ 328 0018 4430     		add	r0, r0, #68
+ 329 001a 221C     		mov	r2, r4
+ 330              	.LVL20:
+ 331 001c FFF7FEFF 		bl	memcpy
+ 332              	.LVL21:
+ 231:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c ****     }
+ 333              		.loc 1 231 0
+ 334 0020 0020     		mov	r0, #0
+ 224:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 335              		.loc 1 224 0
+ 336 0022 2C60     		str	r4, [r5]
+ 337              	.LVL22:
+ 338              	.L33:
+ 235:Generated_Source\PSoC4/I2C_Slave_I2C_BOOT.c **** 
+ 339              		.loc 1 235 0
+ 340              		@ sp needed
+ 341 0024 38BD     		pop	{r3, r4, r5, pc}
+ 342              	.L38:
+ 343 0026 C046     		.align	2
+ 344              	.L37:
+ 345 0028 00000000 		.word	.LANCHOR0
+ 346              		.cfi_endproc
+ 347              	.LFE4:
+ 348              		.size	I2C_Slave_I2CCyBtldrCommWrite, .-I2C_Slave_I2CCyBtldrCommWrite
+ 349              		.bss
+ 350              		.align	2
+ 351              		.set	.LANCHOR0,. + 0
+ 352              		.type	I2C_Slave_applyBuffer, %object
+ 353              		.size	I2C_Slave_applyBuffer, 4
+ 354              	I2C_Slave_applyBuffer:
+ 355 0000 00000000 		.space	4
+ 356              		.type	I2C_Slave_slWriteBuf, %object
+ 357              		.size	I2C_Slave_slWriteBuf, 64
+ 358              	I2C_Slave_slWriteBuf:
+ 359 0004 00000000 		.space	64
+ 359      00000000 
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 13
+
+
+ 359      00000000 
+ 359      00000000 
+ 359      00000000 
+ 360              		.type	I2C_Slave_slReadBuf, %object
+ 361              		.size	I2C_Slave_slReadBuf, 64
+ 362              	I2C_Slave_slReadBuf:
+ 363 0044 00000000 		.space	64
+ 363      00000000 
+ 363      00000000 
+ 363      00000000 
+ 363      00000000 
+ 364              		.text
+ 365              	.Letext0:
+ 366              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 367              		.file 3 "Generated_Source\\PSoC4\\I2C_Slave_I2C_PVT.h"
+ 368              		.file 4 "Generated_Source\\PSoC4\\I2C_Slave_I2C.h"
+ 369              		.file 5 "Generated_Source\\PSoC4\\I2C_Slave.h"
+ 370              		.file 6 "Generated_Source\\PSoC4/CyLib.h"
+ 371              		.section	.debug_info,"",%progbits
+ 372              	.Ldebug_info0:
+ 373 0000 AB030000 		.4byte	0x3ab
+ 374 0004 0400     		.2byte	0x4
+ 375 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 376 000a 04       		.byte	0x4
+ 377 000b 01       		.uleb128 0x1
+ 378 000c 2F000000 		.4byte	.LASF41
+ 379 0010 01       		.byte	0x1
+ 380 0011 EB030000 		.4byte	.LASF42
+ 381 0015 3C010000 		.4byte	.LASF43
+ 382 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 383 001d 00000000 		.4byte	0
+ 384 0021 00000000 		.4byte	.Ldebug_line0
+ 385 0025 02       		.uleb128 0x2
+ 386 0026 01       		.byte	0x1
+ 387 0027 06       		.byte	0x6
+ 388 0028 AE030000 		.4byte	.LASF0
+ 389 002c 02       		.uleb128 0x2
+ 390 002d 01       		.byte	0x1
+ 391 002e 08       		.byte	0x8
+ 392 002f 7E020000 		.4byte	.LASF1
+ 393 0033 02       		.uleb128 0x2
+ 394 0034 02       		.byte	0x2
+ 395 0035 05       		.byte	0x5
+ 396 0036 78030000 		.4byte	.LASF2
+ 397 003a 02       		.uleb128 0x2
+ 398 003b 02       		.byte	0x2
+ 399 003c 07       		.byte	0x7
+ 400 003d FD000000 		.4byte	.LASF3
+ 401 0041 02       		.uleb128 0x2
+ 402 0042 04       		.byte	0x4
+ 403 0043 05       		.byte	0x5
+ 404 0044 8A030000 		.4byte	.LASF4
+ 405 0048 02       		.uleb128 0x2
+ 406 0049 04       		.byte	0x4
+ 407 004a 07       		.byte	0x7
+ 408 004b 2B020000 		.4byte	.LASF5
+ 409 004f 02       		.uleb128 0x2
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 14
+
+
+ 410 0050 08       		.byte	0x8
+ 411 0051 05       		.byte	0x5
+ 412 0052 44030000 		.4byte	.LASF6
+ 413 0056 02       		.uleb128 0x2
+ 414 0057 08       		.byte	0x8
+ 415 0058 07       		.byte	0x7
+ 416 0059 C5020000 		.4byte	.LASF7
+ 417 005d 03       		.uleb128 0x3
+ 418 005e 04       		.byte	0x4
+ 419 005f 05       		.byte	0x5
+ 420 0060 696E7400 		.ascii	"int\000"
+ 421 0064 02       		.uleb128 0x2
+ 422 0065 04       		.byte	0x4
+ 423 0066 07       		.byte	0x7
+ 424 0067 B8020000 		.4byte	.LASF8
+ 425 006b 04       		.uleb128 0x4
+ 426 006c 3D020000 		.4byte	.LASF9
+ 427 0070 02       		.byte	0x2
+ 428 0071 B901     		.2byte	0x1b9
+ 429 0073 2C000000 		.4byte	0x2c
+ 430 0077 04       		.uleb128 0x4
+ 431 0078 93020000 		.4byte	.LASF10
+ 432 007c 02       		.byte	0x2
+ 433 007d BA01     		.2byte	0x1ba
+ 434 007f 3A000000 		.4byte	0x3a
+ 435 0083 04       		.uleb128 0x4
+ 436 0084 9A020000 		.4byte	.LASF11
+ 437 0088 02       		.byte	0x2
+ 438 0089 BB01     		.2byte	0x1bb
+ 439 008b 48000000 		.4byte	0x48
+ 440 008f 02       		.uleb128 0x2
+ 441 0090 04       		.byte	0x4
+ 442 0091 04       		.byte	0x4
+ 443 0092 DF010000 		.4byte	.LASF12
+ 444 0096 02       		.uleb128 0x2
+ 445 0097 08       		.byte	0x8
+ 446 0098 04       		.byte	0x4
+ 447 0099 8C020000 		.4byte	.LASF13
+ 448 009d 02       		.uleb128 0x2
+ 449 009e 01       		.byte	0x1
+ 450 009f 08       		.byte	0x8
+ 451 00a0 93030000 		.4byte	.LASF14
+ 452 00a4 04       		.uleb128 0x4
+ 453 00a5 0A000000 		.4byte	.LASF15
+ 454 00a9 02       		.byte	0x2
+ 455 00aa 5B02     		.2byte	0x25b
+ 456 00ac 48000000 		.4byte	0x48
+ 457 00b0 05       		.uleb128 0x5
+ 458 00b1 6B000000 		.4byte	0x6b
+ 459 00b5 04       		.uleb128 0x4
+ 460 00b6 13000000 		.4byte	.LASF16
+ 461 00ba 02       		.byte	0x2
+ 462 00bb 6502     		.2byte	0x265
+ 463 00bd C1000000 		.4byte	0xc1
+ 464 00c1 05       		.uleb128 0x5
+ 465 00c2 83000000 		.4byte	0x83
+ 466 00c6 06       		.uleb128 0x6
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 15
+
+
+ 467 00c7 04       		.byte	0x4
+ 468 00c8 CC000000 		.4byte	0xcc
+ 469 00cc 07       		.uleb128 0x7
+ 470 00cd 02       		.uleb128 0x2
+ 471 00ce 04       		.byte	0x4
+ 472 00cf 07       		.byte	0x7
+ 473 00d0 3B030000 		.4byte	.LASF17
+ 474 00d4 08       		.uleb128 0x8
+ 475 00d5 04       		.byte	0x4
+ 476 00d6 09       		.uleb128 0x9
+ 477 00d7 FA020000 		.4byte	.LASF44
+ 478 00db 01       		.byte	0x1
+ 479 00dc FB       		.byte	0xfb
+ 480 00dd 01       		.byte	0x1
+ 481 00de 0A       		.uleb128 0xa
+ 482 00df D6000000 		.4byte	0xd6
+ 483 00e3 00000000 		.4byte	.LFB5
+ 484 00e7 4C000000 		.4byte	.LFE5-.LFB5
+ 485 00eb 01       		.uleb128 0x1
+ 486 00ec 9C       		.byte	0x9c
+ 487 00ed 0B       		.uleb128 0xb
+ 488 00ee 1D030000 		.4byte	.LASF18
+ 489 00f2 01       		.byte	0x1
+ 490 00f3 3C       		.byte	0x3c
+ 491 00f4 00000000 		.4byte	.LFB0
+ 492 00f8 30000000 		.4byte	.LFE0-.LFB0
+ 493 00fc 01       		.uleb128 0x1
+ 494 00fd 9C       		.byte	0x9c
+ 495 00fe 57010000 		.4byte	0x157
+ 496 0102 0C       		.uleb128 0xc
+ 497 0103 0C000000 		.4byte	.LVL0
+ 498 0107 30030000 		.4byte	0x330
+ 499 010b 1C010000 		.4byte	0x11c
+ 500 010f 0D       		.uleb128 0xd
+ 501 0110 01       		.uleb128 0x1
+ 502 0111 51       		.byte	0x51
+ 503 0112 02       		.uleb128 0x2
+ 504 0113 08       		.byte	0x8
+ 505 0114 40       		.byte	0x40
+ 506 0115 0D       		.uleb128 0xd
+ 507 0116 01       		.uleb128 0x1
+ 508 0117 50       		.byte	0x50
+ 509 0118 02       		.uleb128 0x2
+ 510 0119 74       		.byte	0x74
+ 511 011a 04       		.sleb128 4
+ 512 011b 00       		.byte	0
+ 513 011c 0C       		.uleb128 0xc
+ 514 011d 16000000 		.4byte	.LVL1
+ 515 0121 47030000 		.4byte	0x347
+ 516 0125 36010000 		.4byte	0x136
+ 517 0129 0D       		.uleb128 0xd
+ 518 012a 01       		.uleb128 0x1
+ 519 012b 51       		.byte	0x51
+ 520 012c 01       		.uleb128 0x1
+ 521 012d 30       		.byte	0x30
+ 522 012e 0D       		.uleb128 0xd
+ 523 012f 01       		.uleb128 0x1
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 16
+
+
+ 524 0130 50       		.byte	0x50
+ 525 0131 03       		.uleb128 0x3
+ 526 0132 74       		.byte	0x74
+ 527 0133 C400     		.sleb128 68
+ 528 0135 00       		.byte	0
+ 529 0136 0C       		.uleb128 0xc
+ 530 0137 1C000000 		.4byte	.LVL2
+ 531 013b 5E030000 		.4byte	0x35e
+ 532 013f 4D010000 		.4byte	0x14d
+ 533 0143 0D       		.uleb128 0xd
+ 534 0144 01       		.uleb128 0x1
+ 535 0145 50       		.byte	0x50
+ 536 0146 05       		.uleb128 0x5
+ 537 0147 03       		.byte	0x3
+ 538 0148 00000000 		.4byte	I2C_Slave_I2CResposeInsert
+ 539 014c 00       		.byte	0
+ 540 014d 0E       		.uleb128 0xe
+ 541 014e 24000000 		.4byte	.LVL3
+ 542 0152 6F030000 		.4byte	0x36f
+ 543 0156 00       		.byte	0
+ 544 0157 0B       		.uleb128 0xb
+ 545 0158 E5010000 		.4byte	.LASF19
+ 546 015c 01       		.byte	0x1
+ 547 015d 4F       		.byte	0x4f
+ 548 015e 00000000 		.4byte	.LFB1
+ 549 0162 08000000 		.4byte	.LFE1-.LFB1
+ 550 0166 01       		.uleb128 0x1
+ 551 0167 9C       		.byte	0x9c
+ 552 0168 76010000 		.4byte	0x176
+ 553 016c 0E       		.uleb128 0xe
+ 554 016d 06000000 		.4byte	.LVL4
+ 555 0171 76030000 		.4byte	0x376
+ 556 0175 00       		.byte	0
+ 557 0176 0F       		.uleb128 0xf
+ 558 0177 DC020000 		.4byte	.LASF45
+ 559 017b 01       		.byte	0x1
+ 560 017c 65       		.byte	0x65
+ 561 017d 00000000 		.4byte	.LFB2
+ 562 0181 24000000 		.4byte	.LFE2-.LFB2
+ 563 0185 01       		.uleb128 0x1
+ 564 0186 9C       		.byte	0x9c
+ 565 0187 10       		.uleb128 0x10
+ 566 0188 61020000 		.4byte	.LASF26
+ 567 018c 01       		.byte	0x1
+ 568 018d 8F       		.byte	0x8f
+ 569 018e A4000000 		.4byte	0xa4
+ 570 0192 00000000 		.4byte	.LFB3
+ 571 0196 64000000 		.4byte	.LFE3-.LFB3
+ 572 019a 01       		.uleb128 0x1
+ 573 019b 9C       		.byte	0x9c
+ 574 019c 27020000 		.4byte	0x227
+ 575 01a0 11       		.uleb128 0x11
+ 576 01a1 D9010000 		.4byte	.LASF20
+ 577 01a5 01       		.byte	0x1
+ 578 01a6 8F       		.byte	0x8f
+ 579 01a7 27020000 		.4byte	0x227
+ 580 01ab 00000000 		.4byte	.LLST0
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 17
+
+
+ 581 01af 11       		.uleb128 0x11
+ 582 01b0 12020000 		.4byte	.LASF21
+ 583 01b4 01       		.byte	0x1
+ 584 01b5 8F       		.byte	0x8f
+ 585 01b6 77000000 		.4byte	0x77
+ 586 01ba 2C000000 		.4byte	.LLST1
+ 587 01be 11       		.uleb128 0x11
+ 588 01bf D3000000 		.4byte	.LASF22
+ 589 01c3 01       		.byte	0x1
+ 590 01c4 8F       		.byte	0x8f
+ 591 01c5 2D020000 		.4byte	0x22d
+ 592 01c9 4D000000 		.4byte	.LLST2
+ 593 01cd 11       		.uleb128 0x11
+ 594 01ce 15030000 		.4byte	.LASF23
+ 595 01d2 01       		.byte	0x1
+ 596 01d3 8F       		.byte	0x8f
+ 597 01d4 6B000000 		.4byte	0x6b
+ 598 01d8 79000000 		.4byte	.LLST3
+ 599 01dc 12       		.uleb128 0x12
+ 600 01dd 28000000 		.4byte	.LASF24
+ 601 01e1 01       		.byte	0x1
+ 602 01e2 91       		.byte	0x91
+ 603 01e3 A4000000 		.4byte	0xa4
+ 604 01e7 9A000000 		.4byte	.LLST4
+ 605 01eb 12       		.uleb128 0x12
+ 606 01ec 00000000 		.4byte	.LASF25
+ 607 01f0 01       		.byte	0x1
+ 608 01f1 92       		.byte	0x92
+ 609 01f2 83000000 		.4byte	0x83
+ 610 01f6 DD000000 		.4byte	.LLST5
+ 611 01fa 0C       		.uleb128 0xc
+ 612 01fb 46000000 		.4byte	.LVL9
+ 613 01ff 7D030000 		.4byte	0x37d
+ 614 0203 17020000 		.4byte	0x217
+ 615 0207 0D       		.uleb128 0xd
+ 616 0208 01       		.uleb128 0x1
+ 617 0209 51       		.byte	0x51
+ 618 020a 05       		.uleb128 0x5
+ 619 020b 03       		.byte	0x3
+ 620 020c 04000000 		.4byte	.LANCHOR0+4
+ 621 0210 0D       		.uleb128 0xd
+ 622 0211 01       		.uleb128 0x1
+ 623 0212 50       		.byte	0x50
+ 624 0213 02       		.uleb128 0x2
+ 625 0214 75       		.byte	0x75
+ 626 0215 00       		.sleb128 0
+ 627 0216 00       		.byte	0
+ 628 0217 13       		.uleb128 0x13
+ 629 0218 50000000 		.4byte	.LVL11
+ 630 021c A1030000 		.4byte	0x3a1
+ 631 0220 0D       		.uleb128 0xd
+ 632 0221 01       		.uleb128 0x1
+ 633 0222 50       		.byte	0x50
+ 634 0223 01       		.uleb128 0x1
+ 635 0224 31       		.byte	0x31
+ 636 0225 00       		.byte	0
+ 637 0226 00       		.byte	0
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 18
+
+
+ 638 0227 06       		.uleb128 0x6
+ 639 0228 04       		.byte	0x4
+ 640 0229 6B000000 		.4byte	0x6b
+ 641 022d 06       		.uleb128 0x6
+ 642 022e 04       		.byte	0x4
+ 643 022f 77000000 		.4byte	0x77
+ 644 0233 10       		.uleb128 0x10
+ 645 0234 BA030000 		.4byte	.LASF27
+ 646 0238 01       		.byte	0x1
+ 647 0239 D3       		.byte	0xd3
+ 648 023a A4000000 		.4byte	0xa4
+ 649 023e 00000000 		.4byte	.LFB4
+ 650 0242 2C000000 		.4byte	.LFE4-.LFB4
+ 651 0246 01       		.uleb128 0x1
+ 652 0247 9C       		.byte	0x9c
+ 653 0248 B6020000 		.4byte	0x2b6
+ 654 024c 11       		.uleb128 0x11
+ 655 024d D9010000 		.4byte	.LASF20
+ 656 0251 01       		.byte	0x1
+ 657 0252 D3       		.byte	0xd3
+ 658 0253 B6020000 		.4byte	0x2b6
+ 659 0257 F0000000 		.4byte	.LLST6
+ 660 025b 11       		.uleb128 0x11
+ 661 025c 12020000 		.4byte	.LASF21
+ 662 0260 01       		.byte	0x1
+ 663 0261 D3       		.byte	0xd3
+ 664 0262 77000000 		.4byte	0x77
+ 665 0266 1C010000 		.4byte	.LLST7
+ 666 026a 11       		.uleb128 0x11
+ 667 026b D3000000 		.4byte	.LASF22
+ 668 026f 01       		.byte	0x1
+ 669 0270 D3       		.byte	0xd3
+ 670 0271 2D020000 		.4byte	0x22d
+ 671 0275 56010000 		.4byte	.LLST8
+ 672 0279 11       		.uleb128 0x11
+ 673 027a 15030000 		.4byte	.LASF23
+ 674 027e 01       		.byte	0x1
+ 675 027f D3       		.byte	0xd3
+ 676 0280 6B000000 		.4byte	0x6b
+ 677 0284 77010000 		.4byte	.LLST9
+ 678 0288 12       		.uleb128 0x12
+ 679 0289 28000000 		.4byte	.LASF24
+ 680 028d 01       		.byte	0x1
+ 681 028e D5       		.byte	0xd5
+ 682 028f A4000000 		.4byte	0xa4
+ 683 0293 98010000 		.4byte	.LLST10
+ 684 0297 13       		.uleb128 0x13
+ 685 0298 20000000 		.4byte	.LVL21
+ 686 029c 7D030000 		.4byte	0x37d
+ 687 02a0 0D       		.uleb128 0xd
+ 688 02a1 01       		.uleb128 0x1
+ 689 02a2 52       		.byte	0x52
+ 690 02a3 02       		.uleb128 0x2
+ 691 02a4 74       		.byte	0x74
+ 692 02a5 00       		.sleb128 0
+ 693 02a6 0D       		.uleb128 0xd
+ 694 02a7 01       		.uleb128 0x1
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 19
+
+
+ 695 02a8 51       		.byte	0x51
+ 696 02a9 03       		.uleb128 0x3
+ 697 02aa F3       		.byte	0xf3
+ 698 02ab 01       		.uleb128 0x1
+ 699 02ac 50       		.byte	0x50
+ 700 02ad 0D       		.uleb128 0xd
+ 701 02ae 01       		.uleb128 0x1
+ 702 02af 50       		.byte	0x50
+ 703 02b0 03       		.uleb128 0x3
+ 704 02b1 75       		.byte	0x75
+ 705 02b2 C400     		.sleb128 68
+ 706 02b4 00       		.byte	0
+ 707 02b5 00       		.byte	0
+ 708 02b6 06       		.uleb128 0x6
+ 709 02b7 04       		.byte	0x4
+ 710 02b8 BC020000 		.4byte	0x2bc
+ 711 02bc 14       		.uleb128 0x14
+ 712 02bd 6B000000 		.4byte	0x6b
+ 713 02c1 15       		.uleb128 0x15
+ 714 02c2 6B000000 		.4byte	0x6b
+ 715 02c6 D1020000 		.4byte	0x2d1
+ 716 02ca 16       		.uleb128 0x16
+ 717 02cb CD000000 		.4byte	0xcd
+ 718 02cf 3F       		.byte	0x3f
+ 719 02d0 00       		.byte	0
+ 720 02d1 17       		.uleb128 0x17
+ 721 02d2 17020000 		.4byte	.LASF28
+ 722 02d6 01       		.byte	0x1
+ 723 02d7 1D       		.byte	0x1d
+ 724 02d8 C1020000 		.4byte	0x2c1
+ 725 02dc 05       		.uleb128 0x5
+ 726 02dd 03       		.byte	0x3
+ 727 02de 44000000 		.4byte	I2C_Slave_slReadBuf
+ 728 02e2 17       		.uleb128 0x17
+ 729 02e3 10010000 		.4byte	.LASF29
+ 730 02e7 01       		.byte	0x1
+ 731 02e8 20       		.byte	0x20
+ 732 02e9 C1020000 		.4byte	0x2c1
+ 733 02ed 05       		.uleb128 0x5
+ 734 02ee 03       		.byte	0x3
+ 735 02ef 04000000 		.4byte	I2C_Slave_slWriteBuf
+ 736 02f3 17       		.uleb128 0x17
+ 737 02f4 98030000 		.4byte	.LASF30
+ 738 02f8 01       		.byte	0x1
+ 739 02f9 23       		.byte	0x23
+ 740 02fa 83000000 		.4byte	0x83
+ 741 02fe 05       		.uleb128 0x5
+ 742 02ff 03       		.byte	0x3
+ 743 0300 00000000 		.4byte	I2C_Slave_applyBuffer
+ 744 0304 18       		.uleb128 0x18
+ 745 0305 D8030000 		.4byte	.LASF31
+ 746 0309 03       		.byte	0x3
+ 747 030a 21       		.byte	0x21
+ 748 030b B0000000 		.4byte	0xb0
+ 749 030f 18       		.uleb128 0x18
+ 750 0310 25010000 		.4byte	.LASF32
+ 751 0314 03       		.byte	0x3
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 20
+
+
+ 752 0315 26       		.byte	0x26
+ 753 0316 C1000000 		.4byte	0xc1
+ 754 031a 18       		.uleb128 0x18
+ 755 031b BD000000 		.4byte	.LASF33
+ 756 031f 03       		.byte	0x3
+ 757 0320 2A       		.byte	0x2a
+ 758 0321 C1000000 		.4byte	0xc1
+ 759 0325 18       		.uleb128 0x18
+ 760 0326 A1020000 		.4byte	.LASF34
+ 761 032a 03       		.byte	0x3
+ 762 032b 2B       		.byte	0x2b
+ 763 032c C1000000 		.4byte	0xc1
+ 764 0330 19       		.uleb128 0x19
+ 765 0331 59030000 		.4byte	.LASF35
+ 766 0335 04       		.byte	0x4
+ 767 0336 2F01     		.2byte	0x12f
+ 768 0338 47030000 		.4byte	0x347
+ 769 033c 1A       		.uleb128 0x1a
+ 770 033d 27020000 		.4byte	0x227
+ 771 0341 1A       		.uleb128 0x1a
+ 772 0342 83000000 		.4byte	0x83
+ 773 0346 00       		.byte	0
+ 774 0347 19       		.uleb128 0x19
+ 775 0348 43020000 		.4byte	.LASF36
+ 776 034c 04       		.byte	0x4
+ 777 034d 2E01     		.2byte	0x12e
+ 778 034f 5E030000 		.4byte	0x35e
+ 779 0353 1A       		.uleb128 0x1a
+ 780 0354 27020000 		.4byte	0x227
+ 781 0358 1A       		.uleb128 0x1a
+ 782 0359 83000000 		.4byte	0x83
+ 783 035d 00       		.byte	0
+ 784 035e 1B       		.uleb128 0x1b
+ 785 035f D9000000 		.4byte	.LASF37
+ 786 0363 05       		.byte	0x5
+ 787 0364 82       		.byte	0x82
+ 788 0365 6F030000 		.4byte	0x36f
+ 789 0369 1A       		.uleb128 0x1a
+ 790 036a C6000000 		.4byte	0xc6
+ 791 036e 00       		.byte	0
+ 792 036f 1C       		.uleb128 0x1c
+ 793 0370 02020000 		.4byte	.LASF38
+ 794 0374 05       		.byte	0x5
+ 795 0375 6E       		.byte	0x6e
+ 796 0376 1C       		.uleb128 0x1c
+ 797 0377 19000000 		.4byte	.LASF39
+ 798 037b 05       		.byte	0x5
+ 799 037c 6F       		.byte	0x6f
+ 800 037d 1D       		.uleb128 0x1d
+ 801 037e 52030000 		.4byte	.LASF40
+ 802 0382 D4000000 		.4byte	0xd4
+ 803 0386 9A030000 		.4byte	0x39a
+ 804 038a 1A       		.uleb128 0x1a
+ 805 038b D4000000 		.4byte	0xd4
+ 806 038f 1A       		.uleb128 0x1a
+ 807 0390 9A030000 		.4byte	0x39a
+ 808 0394 1A       		.uleb128 0x1a
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 21
+
+
+ 809 0395 CD000000 		.4byte	0xcd
+ 810 0399 00       		.byte	0
+ 811 039a 06       		.uleb128 0x6
+ 812 039b 04       		.byte	0x4
+ 813 039c A0030000 		.4byte	0x3a0
+ 814 03a0 1E       		.uleb128 0x1e
+ 815 03a1 1F       		.uleb128 0x1f
+ 816 03a2 82030000 		.4byte	.LASF46
+ 817 03a6 06       		.byte	0x6
+ 818 03a7 D9       		.byte	0xd9
+ 819 03a8 1A       		.uleb128 0x1a
+ 820 03a9 83000000 		.4byte	0x83
+ 821 03ad 00       		.byte	0
+ 822 03ae 00       		.byte	0
+ 823              		.section	.debug_abbrev,"",%progbits
+ 824              	.Ldebug_abbrev0:
+ 825 0000 01       		.uleb128 0x1
+ 826 0001 11       		.uleb128 0x11
+ 827 0002 01       		.byte	0x1
+ 828 0003 25       		.uleb128 0x25
+ 829 0004 0E       		.uleb128 0xe
+ 830 0005 13       		.uleb128 0x13
+ 831 0006 0B       		.uleb128 0xb
+ 832 0007 03       		.uleb128 0x3
+ 833 0008 0E       		.uleb128 0xe
+ 834 0009 1B       		.uleb128 0x1b
+ 835 000a 0E       		.uleb128 0xe
+ 836 000b 55       		.uleb128 0x55
+ 837 000c 17       		.uleb128 0x17
+ 838 000d 11       		.uleb128 0x11
+ 839 000e 01       		.uleb128 0x1
+ 840 000f 10       		.uleb128 0x10
+ 841 0010 17       		.uleb128 0x17
+ 842 0011 00       		.byte	0
+ 843 0012 00       		.byte	0
+ 844 0013 02       		.uleb128 0x2
+ 845 0014 24       		.uleb128 0x24
+ 846 0015 00       		.byte	0
+ 847 0016 0B       		.uleb128 0xb
+ 848 0017 0B       		.uleb128 0xb
+ 849 0018 3E       		.uleb128 0x3e
+ 850 0019 0B       		.uleb128 0xb
+ 851 001a 03       		.uleb128 0x3
+ 852 001b 0E       		.uleb128 0xe
+ 853 001c 00       		.byte	0
+ 854 001d 00       		.byte	0
+ 855 001e 03       		.uleb128 0x3
+ 856 001f 24       		.uleb128 0x24
+ 857 0020 00       		.byte	0
+ 858 0021 0B       		.uleb128 0xb
+ 859 0022 0B       		.uleb128 0xb
+ 860 0023 3E       		.uleb128 0x3e
+ 861 0024 0B       		.uleb128 0xb
+ 862 0025 03       		.uleb128 0x3
+ 863 0026 08       		.uleb128 0x8
+ 864 0027 00       		.byte	0
+ 865 0028 00       		.byte	0
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 22
+
+
+ 866 0029 04       		.uleb128 0x4
+ 867 002a 16       		.uleb128 0x16
+ 868 002b 00       		.byte	0
+ 869 002c 03       		.uleb128 0x3
+ 870 002d 0E       		.uleb128 0xe
+ 871 002e 3A       		.uleb128 0x3a
+ 872 002f 0B       		.uleb128 0xb
+ 873 0030 3B       		.uleb128 0x3b
+ 874 0031 05       		.uleb128 0x5
+ 875 0032 49       		.uleb128 0x49
+ 876 0033 13       		.uleb128 0x13
+ 877 0034 00       		.byte	0
+ 878 0035 00       		.byte	0
+ 879 0036 05       		.uleb128 0x5
+ 880 0037 35       		.uleb128 0x35
+ 881 0038 00       		.byte	0
+ 882 0039 49       		.uleb128 0x49
+ 883 003a 13       		.uleb128 0x13
+ 884 003b 00       		.byte	0
+ 885 003c 00       		.byte	0
+ 886 003d 06       		.uleb128 0x6
+ 887 003e 0F       		.uleb128 0xf
+ 888 003f 00       		.byte	0
+ 889 0040 0B       		.uleb128 0xb
+ 890 0041 0B       		.uleb128 0xb
+ 891 0042 49       		.uleb128 0x49
+ 892 0043 13       		.uleb128 0x13
+ 893 0044 00       		.byte	0
+ 894 0045 00       		.byte	0
+ 895 0046 07       		.uleb128 0x7
+ 896 0047 15       		.uleb128 0x15
+ 897 0048 00       		.byte	0
+ 898 0049 27       		.uleb128 0x27
+ 899 004a 19       		.uleb128 0x19
+ 900 004b 00       		.byte	0
+ 901 004c 00       		.byte	0
+ 902 004d 08       		.uleb128 0x8
+ 903 004e 0F       		.uleb128 0xf
+ 904 004f 00       		.byte	0
+ 905 0050 0B       		.uleb128 0xb
+ 906 0051 0B       		.uleb128 0xb
+ 907 0052 00       		.byte	0
+ 908 0053 00       		.byte	0
+ 909 0054 09       		.uleb128 0x9
+ 910 0055 2E       		.uleb128 0x2e
+ 911 0056 00       		.byte	0
+ 912 0057 03       		.uleb128 0x3
+ 913 0058 0E       		.uleb128 0xe
+ 914 0059 3A       		.uleb128 0x3a
+ 915 005a 0B       		.uleb128 0xb
+ 916 005b 3B       		.uleb128 0x3b
+ 917 005c 0B       		.uleb128 0xb
+ 918 005d 27       		.uleb128 0x27
+ 919 005e 19       		.uleb128 0x19
+ 920 005f 20       		.uleb128 0x20
+ 921 0060 0B       		.uleb128 0xb
+ 922 0061 00       		.byte	0
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 23
+
+
+ 923 0062 00       		.byte	0
+ 924 0063 0A       		.uleb128 0xa
+ 925 0064 2E       		.uleb128 0x2e
+ 926 0065 00       		.byte	0
+ 927 0066 31       		.uleb128 0x31
+ 928 0067 13       		.uleb128 0x13
+ 929 0068 11       		.uleb128 0x11
+ 930 0069 01       		.uleb128 0x1
+ 931 006a 12       		.uleb128 0x12
+ 932 006b 06       		.uleb128 0x6
+ 933 006c 40       		.uleb128 0x40
+ 934 006d 18       		.uleb128 0x18
+ 935 006e 9742     		.uleb128 0x2117
+ 936 0070 19       		.uleb128 0x19
+ 937 0071 00       		.byte	0
+ 938 0072 00       		.byte	0
+ 939 0073 0B       		.uleb128 0xb
+ 940 0074 2E       		.uleb128 0x2e
+ 941 0075 01       		.byte	0x1
+ 942 0076 3F       		.uleb128 0x3f
+ 943 0077 19       		.uleb128 0x19
+ 944 0078 03       		.uleb128 0x3
+ 945 0079 0E       		.uleb128 0xe
+ 946 007a 3A       		.uleb128 0x3a
+ 947 007b 0B       		.uleb128 0xb
+ 948 007c 3B       		.uleb128 0x3b
+ 949 007d 0B       		.uleb128 0xb
+ 950 007e 27       		.uleb128 0x27
+ 951 007f 19       		.uleb128 0x19
+ 952 0080 11       		.uleb128 0x11
+ 953 0081 01       		.uleb128 0x1
+ 954 0082 12       		.uleb128 0x12
+ 955 0083 06       		.uleb128 0x6
+ 956 0084 40       		.uleb128 0x40
+ 957 0085 18       		.uleb128 0x18
+ 958 0086 9742     		.uleb128 0x2117
+ 959 0088 19       		.uleb128 0x19
+ 960 0089 01       		.uleb128 0x1
+ 961 008a 13       		.uleb128 0x13
+ 962 008b 00       		.byte	0
+ 963 008c 00       		.byte	0
+ 964 008d 0C       		.uleb128 0xc
+ 965 008e 898201   		.uleb128 0x4109
+ 966 0091 01       		.byte	0x1
+ 967 0092 11       		.uleb128 0x11
+ 968 0093 01       		.uleb128 0x1
+ 969 0094 31       		.uleb128 0x31
+ 970 0095 13       		.uleb128 0x13
+ 971 0096 01       		.uleb128 0x1
+ 972 0097 13       		.uleb128 0x13
+ 973 0098 00       		.byte	0
+ 974 0099 00       		.byte	0
+ 975 009a 0D       		.uleb128 0xd
+ 976 009b 8A8201   		.uleb128 0x410a
+ 977 009e 00       		.byte	0
+ 978 009f 02       		.uleb128 0x2
+ 979 00a0 18       		.uleb128 0x18
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 24
+
+
+ 980 00a1 9142     		.uleb128 0x2111
+ 981 00a3 18       		.uleb128 0x18
+ 982 00a4 00       		.byte	0
+ 983 00a5 00       		.byte	0
+ 984 00a6 0E       		.uleb128 0xe
+ 985 00a7 898201   		.uleb128 0x4109
+ 986 00aa 00       		.byte	0
+ 987 00ab 11       		.uleb128 0x11
+ 988 00ac 01       		.uleb128 0x1
+ 989 00ad 31       		.uleb128 0x31
+ 990 00ae 13       		.uleb128 0x13
+ 991 00af 00       		.byte	0
+ 992 00b0 00       		.byte	0
+ 993 00b1 0F       		.uleb128 0xf
+ 994 00b2 2E       		.uleb128 0x2e
+ 995 00b3 00       		.byte	0
+ 996 00b4 3F       		.uleb128 0x3f
+ 997 00b5 19       		.uleb128 0x19
+ 998 00b6 03       		.uleb128 0x3
+ 999 00b7 0E       		.uleb128 0xe
+ 1000 00b8 3A       		.uleb128 0x3a
+ 1001 00b9 0B       		.uleb128 0xb
+ 1002 00ba 3B       		.uleb128 0x3b
+ 1003 00bb 0B       		.uleb128 0xb
+ 1004 00bc 27       		.uleb128 0x27
+ 1005 00bd 19       		.uleb128 0x19
+ 1006 00be 11       		.uleb128 0x11
+ 1007 00bf 01       		.uleb128 0x1
+ 1008 00c0 12       		.uleb128 0x12
+ 1009 00c1 06       		.uleb128 0x6
+ 1010 00c2 40       		.uleb128 0x40
+ 1011 00c3 18       		.uleb128 0x18
+ 1012 00c4 9742     		.uleb128 0x2117
+ 1013 00c6 19       		.uleb128 0x19
+ 1014 00c7 00       		.byte	0
+ 1015 00c8 00       		.byte	0
+ 1016 00c9 10       		.uleb128 0x10
+ 1017 00ca 2E       		.uleb128 0x2e
+ 1018 00cb 01       		.byte	0x1
+ 1019 00cc 3F       		.uleb128 0x3f
+ 1020 00cd 19       		.uleb128 0x19
+ 1021 00ce 03       		.uleb128 0x3
+ 1022 00cf 0E       		.uleb128 0xe
+ 1023 00d0 3A       		.uleb128 0x3a
+ 1024 00d1 0B       		.uleb128 0xb
+ 1025 00d2 3B       		.uleb128 0x3b
+ 1026 00d3 0B       		.uleb128 0xb
+ 1027 00d4 27       		.uleb128 0x27
+ 1028 00d5 19       		.uleb128 0x19
+ 1029 00d6 49       		.uleb128 0x49
+ 1030 00d7 13       		.uleb128 0x13
+ 1031 00d8 11       		.uleb128 0x11
+ 1032 00d9 01       		.uleb128 0x1
+ 1033 00da 12       		.uleb128 0x12
+ 1034 00db 06       		.uleb128 0x6
+ 1035 00dc 40       		.uleb128 0x40
+ 1036 00dd 18       		.uleb128 0x18
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 25
+
+
+ 1037 00de 9742     		.uleb128 0x2117
+ 1038 00e0 19       		.uleb128 0x19
+ 1039 00e1 01       		.uleb128 0x1
+ 1040 00e2 13       		.uleb128 0x13
+ 1041 00e3 00       		.byte	0
+ 1042 00e4 00       		.byte	0
+ 1043 00e5 11       		.uleb128 0x11
+ 1044 00e6 05       		.uleb128 0x5
+ 1045 00e7 00       		.byte	0
+ 1046 00e8 03       		.uleb128 0x3
+ 1047 00e9 0E       		.uleb128 0xe
+ 1048 00ea 3A       		.uleb128 0x3a
+ 1049 00eb 0B       		.uleb128 0xb
+ 1050 00ec 3B       		.uleb128 0x3b
+ 1051 00ed 0B       		.uleb128 0xb
+ 1052 00ee 49       		.uleb128 0x49
+ 1053 00ef 13       		.uleb128 0x13
+ 1054 00f0 02       		.uleb128 0x2
+ 1055 00f1 17       		.uleb128 0x17
+ 1056 00f2 00       		.byte	0
+ 1057 00f3 00       		.byte	0
+ 1058 00f4 12       		.uleb128 0x12
+ 1059 00f5 34       		.uleb128 0x34
+ 1060 00f6 00       		.byte	0
+ 1061 00f7 03       		.uleb128 0x3
+ 1062 00f8 0E       		.uleb128 0xe
+ 1063 00f9 3A       		.uleb128 0x3a
+ 1064 00fa 0B       		.uleb128 0xb
+ 1065 00fb 3B       		.uleb128 0x3b
+ 1066 00fc 0B       		.uleb128 0xb
+ 1067 00fd 49       		.uleb128 0x49
+ 1068 00fe 13       		.uleb128 0x13
+ 1069 00ff 02       		.uleb128 0x2
+ 1070 0100 17       		.uleb128 0x17
+ 1071 0101 00       		.byte	0
+ 1072 0102 00       		.byte	0
+ 1073 0103 13       		.uleb128 0x13
+ 1074 0104 898201   		.uleb128 0x4109
+ 1075 0107 01       		.byte	0x1
+ 1076 0108 11       		.uleb128 0x11
+ 1077 0109 01       		.uleb128 0x1
+ 1078 010a 31       		.uleb128 0x31
+ 1079 010b 13       		.uleb128 0x13
+ 1080 010c 00       		.byte	0
+ 1081 010d 00       		.byte	0
+ 1082 010e 14       		.uleb128 0x14
+ 1083 010f 26       		.uleb128 0x26
+ 1084 0110 00       		.byte	0
+ 1085 0111 49       		.uleb128 0x49
+ 1086 0112 13       		.uleb128 0x13
+ 1087 0113 00       		.byte	0
+ 1088 0114 00       		.byte	0
+ 1089 0115 15       		.uleb128 0x15
+ 1090 0116 01       		.uleb128 0x1
+ 1091 0117 01       		.byte	0x1
+ 1092 0118 49       		.uleb128 0x49
+ 1093 0119 13       		.uleb128 0x13
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 26
+
+
+ 1094 011a 01       		.uleb128 0x1
+ 1095 011b 13       		.uleb128 0x13
+ 1096 011c 00       		.byte	0
+ 1097 011d 00       		.byte	0
+ 1098 011e 16       		.uleb128 0x16
+ 1099 011f 21       		.uleb128 0x21
+ 1100 0120 00       		.byte	0
+ 1101 0121 49       		.uleb128 0x49
+ 1102 0122 13       		.uleb128 0x13
+ 1103 0123 2F       		.uleb128 0x2f
+ 1104 0124 0B       		.uleb128 0xb
+ 1105 0125 00       		.byte	0
+ 1106 0126 00       		.byte	0
+ 1107 0127 17       		.uleb128 0x17
+ 1108 0128 34       		.uleb128 0x34
+ 1109 0129 00       		.byte	0
+ 1110 012a 03       		.uleb128 0x3
+ 1111 012b 0E       		.uleb128 0xe
+ 1112 012c 3A       		.uleb128 0x3a
+ 1113 012d 0B       		.uleb128 0xb
+ 1114 012e 3B       		.uleb128 0x3b
+ 1115 012f 0B       		.uleb128 0xb
+ 1116 0130 49       		.uleb128 0x49
+ 1117 0131 13       		.uleb128 0x13
+ 1118 0132 02       		.uleb128 0x2
+ 1119 0133 18       		.uleb128 0x18
+ 1120 0134 00       		.byte	0
+ 1121 0135 00       		.byte	0
+ 1122 0136 18       		.uleb128 0x18
+ 1123 0137 34       		.uleb128 0x34
+ 1124 0138 00       		.byte	0
+ 1125 0139 03       		.uleb128 0x3
+ 1126 013a 0E       		.uleb128 0xe
+ 1127 013b 3A       		.uleb128 0x3a
+ 1128 013c 0B       		.uleb128 0xb
+ 1129 013d 3B       		.uleb128 0x3b
+ 1130 013e 0B       		.uleb128 0xb
+ 1131 013f 49       		.uleb128 0x49
+ 1132 0140 13       		.uleb128 0x13
+ 1133 0141 3F       		.uleb128 0x3f
+ 1134 0142 19       		.uleb128 0x19
+ 1135 0143 3C       		.uleb128 0x3c
+ 1136 0144 19       		.uleb128 0x19
+ 1137 0145 00       		.byte	0
+ 1138 0146 00       		.byte	0
+ 1139 0147 19       		.uleb128 0x19
+ 1140 0148 2E       		.uleb128 0x2e
+ 1141 0149 01       		.byte	0x1
+ 1142 014a 3F       		.uleb128 0x3f
+ 1143 014b 19       		.uleb128 0x19
+ 1144 014c 03       		.uleb128 0x3
+ 1145 014d 0E       		.uleb128 0xe
+ 1146 014e 3A       		.uleb128 0x3a
+ 1147 014f 0B       		.uleb128 0xb
+ 1148 0150 3B       		.uleb128 0x3b
+ 1149 0151 05       		.uleb128 0x5
+ 1150 0152 27       		.uleb128 0x27
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 27
+
+
+ 1151 0153 19       		.uleb128 0x19
+ 1152 0154 3C       		.uleb128 0x3c
+ 1153 0155 19       		.uleb128 0x19
+ 1154 0156 01       		.uleb128 0x1
+ 1155 0157 13       		.uleb128 0x13
+ 1156 0158 00       		.byte	0
+ 1157 0159 00       		.byte	0
+ 1158 015a 1A       		.uleb128 0x1a
+ 1159 015b 05       		.uleb128 0x5
+ 1160 015c 00       		.byte	0
+ 1161 015d 49       		.uleb128 0x49
+ 1162 015e 13       		.uleb128 0x13
+ 1163 015f 00       		.byte	0
+ 1164 0160 00       		.byte	0
+ 1165 0161 1B       		.uleb128 0x1b
+ 1166 0162 2E       		.uleb128 0x2e
+ 1167 0163 01       		.byte	0x1
+ 1168 0164 3F       		.uleb128 0x3f
+ 1169 0165 19       		.uleb128 0x19
+ 1170 0166 03       		.uleb128 0x3
+ 1171 0167 0E       		.uleb128 0xe
+ 1172 0168 3A       		.uleb128 0x3a
+ 1173 0169 0B       		.uleb128 0xb
+ 1174 016a 3B       		.uleb128 0x3b
+ 1175 016b 0B       		.uleb128 0xb
+ 1176 016c 27       		.uleb128 0x27
+ 1177 016d 19       		.uleb128 0x19
+ 1178 016e 3C       		.uleb128 0x3c
+ 1179 016f 19       		.uleb128 0x19
+ 1180 0170 01       		.uleb128 0x1
+ 1181 0171 13       		.uleb128 0x13
+ 1182 0172 00       		.byte	0
+ 1183 0173 00       		.byte	0
+ 1184 0174 1C       		.uleb128 0x1c
+ 1185 0175 2E       		.uleb128 0x2e
+ 1186 0176 00       		.byte	0
+ 1187 0177 3F       		.uleb128 0x3f
+ 1188 0178 19       		.uleb128 0x19
+ 1189 0179 03       		.uleb128 0x3
+ 1190 017a 0E       		.uleb128 0xe
+ 1191 017b 3A       		.uleb128 0x3a
+ 1192 017c 0B       		.uleb128 0xb
+ 1193 017d 3B       		.uleb128 0x3b
+ 1194 017e 0B       		.uleb128 0xb
+ 1195 017f 27       		.uleb128 0x27
+ 1196 0180 19       		.uleb128 0x19
+ 1197 0181 3C       		.uleb128 0x3c
+ 1198 0182 19       		.uleb128 0x19
+ 1199 0183 00       		.byte	0
+ 1200 0184 00       		.byte	0
+ 1201 0185 1D       		.uleb128 0x1d
+ 1202 0186 2E       		.uleb128 0x2e
+ 1203 0187 01       		.byte	0x1
+ 1204 0188 3F       		.uleb128 0x3f
+ 1205 0189 19       		.uleb128 0x19
+ 1206 018a 03       		.uleb128 0x3
+ 1207 018b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 28
+
+
+ 1208 018c 27       		.uleb128 0x27
+ 1209 018d 19       		.uleb128 0x19
+ 1210 018e 49       		.uleb128 0x49
+ 1211 018f 13       		.uleb128 0x13
+ 1212 0190 34       		.uleb128 0x34
+ 1213 0191 19       		.uleb128 0x19
+ 1214 0192 3C       		.uleb128 0x3c
+ 1215 0193 19       		.uleb128 0x19
+ 1216 0194 01       		.uleb128 0x1
+ 1217 0195 13       		.uleb128 0x13
+ 1218 0196 00       		.byte	0
+ 1219 0197 00       		.byte	0
+ 1220 0198 1E       		.uleb128 0x1e
+ 1221 0199 26       		.uleb128 0x26
+ 1222 019a 00       		.byte	0
+ 1223 019b 00       		.byte	0
+ 1224 019c 00       		.byte	0
+ 1225 019d 1F       		.uleb128 0x1f
+ 1226 019e 2E       		.uleb128 0x2e
+ 1227 019f 01       		.byte	0x1
+ 1228 01a0 3F       		.uleb128 0x3f
+ 1229 01a1 19       		.uleb128 0x19
+ 1230 01a2 03       		.uleb128 0x3
+ 1231 01a3 0E       		.uleb128 0xe
+ 1232 01a4 3A       		.uleb128 0x3a
+ 1233 01a5 0B       		.uleb128 0xb
+ 1234 01a6 3B       		.uleb128 0x3b
+ 1235 01a7 0B       		.uleb128 0xb
+ 1236 01a8 27       		.uleb128 0x27
+ 1237 01a9 19       		.uleb128 0x19
+ 1238 01aa 3C       		.uleb128 0x3c
+ 1239 01ab 19       		.uleb128 0x19
+ 1240 01ac 00       		.byte	0
+ 1241 01ad 00       		.byte	0
+ 1242 01ae 00       		.byte	0
+ 1243              		.section	.debug_loc,"",%progbits
+ 1244              	.Ldebug_loc0:
+ 1245              	.LLST0:
+ 1246 0000 00000000 		.4byte	.LVL5
+ 1247 0004 0A000000 		.4byte	.LVL6
+ 1248 0008 0100     		.2byte	0x1
+ 1249 000a 50       		.byte	0x50
+ 1250 000b 0A000000 		.4byte	.LVL6
+ 1251 000f 54000000 		.4byte	.LVL14
+ 1252 0013 0100     		.2byte	0x1
+ 1253 0015 55       		.byte	0x55
+ 1254 0016 54000000 		.4byte	.LVL14
+ 1255 001a 64000000 		.4byte	.LFE3
+ 1256 001e 0400     		.2byte	0x4
+ 1257 0020 F3       		.byte	0xf3
+ 1258 0021 01       		.uleb128 0x1
+ 1259 0022 50       		.byte	0x50
+ 1260 0023 9F       		.byte	0x9f
+ 1261 0024 00000000 		.4byte	0
+ 1262 0028 00000000 		.4byte	0
+ 1263              	.LLST1:
+ 1264 002c 00000000 		.4byte	.LVL5
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 29
+
+
+ 1265 0030 16000000 		.4byte	.LVL8
+ 1266 0034 0100     		.2byte	0x1
+ 1267 0036 51       		.byte	0x51
+ 1268 0037 16000000 		.4byte	.LVL8
+ 1269 003b 64000000 		.4byte	.LFE3
+ 1270 003f 0400     		.2byte	0x4
+ 1271 0041 F3       		.byte	0xf3
+ 1272 0042 01       		.uleb128 0x1
+ 1273 0043 51       		.byte	0x51
+ 1274 0044 9F       		.byte	0x9f
+ 1275 0045 00000000 		.4byte	0
+ 1276 0049 00000000 		.4byte	0
+ 1277              	.LLST2:
+ 1278 004d 00000000 		.4byte	.LVL5
+ 1279 0051 16000000 		.4byte	.LVL8
+ 1280 0055 0100     		.2byte	0x1
+ 1281 0057 52       		.byte	0x52
+ 1282 0058 16000000 		.4byte	.LVL8
+ 1283 005c 54000000 		.4byte	.LVL15
+ 1284 0060 0100     		.2byte	0x1
+ 1285 0062 56       		.byte	0x56
+ 1286 0063 54000000 		.4byte	.LVL15
+ 1287 0067 64000000 		.4byte	.LFE3
+ 1288 006b 0400     		.2byte	0x4
+ 1289 006d F3       		.byte	0xf3
+ 1290 006e 01       		.uleb128 0x1
+ 1291 006f 52       		.byte	0x52
+ 1292 0070 9F       		.byte	0x9f
+ 1293 0071 00000000 		.4byte	0
+ 1294 0075 00000000 		.4byte	0
+ 1295              	.LLST3:
+ 1296 0079 00000000 		.4byte	.LVL5
+ 1297 007d 16000000 		.4byte	.LVL8
+ 1298 0081 0100     		.2byte	0x1
+ 1299 0083 53       		.byte	0x53
+ 1300 0084 16000000 		.4byte	.LVL8
+ 1301 0088 64000000 		.4byte	.LFE3
+ 1302 008c 0400     		.2byte	0x4
+ 1303 008e F3       		.byte	0xf3
+ 1304 008f 01       		.uleb128 0x1
+ 1305 0090 53       		.byte	0x53
+ 1306 0091 9F       		.byte	0x9f
+ 1307 0092 00000000 		.4byte	0
+ 1308 0096 00000000 		.4byte	0
+ 1309              	.LLST4:
+ 1310 009a 00000000 		.4byte	.LVL5
+ 1311 009e 12000000 		.4byte	.LVL7
+ 1312 00a2 0200     		.2byte	0x2
+ 1313 00a4 31       		.byte	0x31
+ 1314 00a5 9F       		.byte	0x9f
+ 1315 00a6 12000000 		.4byte	.LVL7
+ 1316 00aa 46000000 		.4byte	.LVL9
+ 1317 00ae 0200     		.2byte	0x2
+ 1318 00b0 40       		.byte	0x40
+ 1319 00b1 9F       		.byte	0x9f
+ 1320 00b2 46000000 		.4byte	.LVL9
+ 1321 00b6 4A000000 		.4byte	.LVL10
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 30
+
+
+ 1322 00ba 0200     		.2byte	0x2
+ 1323 00bc 30       		.byte	0x30
+ 1324 00bd 9F       		.byte	0x9f
+ 1325 00be 4A000000 		.4byte	.LVL10
+ 1326 00c2 54000000 		.4byte	.LVL13
+ 1327 00c6 0200     		.2byte	0x2
+ 1328 00c8 40       		.byte	0x40
+ 1329 00c9 9F       		.byte	0x9f
+ 1330 00ca 54000000 		.4byte	.LVL13
+ 1331 00ce 64000000 		.4byte	.LFE3
+ 1332 00d2 0100     		.2byte	0x1
+ 1333 00d4 50       		.byte	0x50
+ 1334 00d5 00000000 		.4byte	0
+ 1335 00d9 00000000 		.4byte	0
+ 1336              	.LLST5:
+ 1337 00dd 16000000 		.4byte	.LVL8
+ 1338 00e1 54000000 		.4byte	.LVL13
+ 1339 00e5 0100     		.2byte	0x1
+ 1340 00e7 57       		.byte	0x57
+ 1341 00e8 00000000 		.4byte	0
+ 1342 00ec 00000000 		.4byte	0
+ 1343              	.LLST6:
+ 1344 00f0 00000000 		.4byte	.LVL16
+ 1345 00f4 08000000 		.4byte	.LVL18
+ 1346 00f8 0100     		.2byte	0x1
+ 1347 00fa 50       		.byte	0x50
+ 1348 00fb 08000000 		.4byte	.LVL18
+ 1349 00ff 1F000000 		.4byte	.LVL21-1
+ 1350 0103 0100     		.2byte	0x1
+ 1351 0105 53       		.byte	0x53
+ 1352 0106 1F000000 		.4byte	.LVL21-1
+ 1353 010a 2C000000 		.4byte	.LFE4
+ 1354 010e 0400     		.2byte	0x4
+ 1355 0110 F3       		.byte	0xf3
+ 1356 0111 01       		.uleb128 0x1
+ 1357 0112 50       		.byte	0x50
+ 1358 0113 9F       		.byte	0x9f
+ 1359 0114 00000000 		.4byte	0
+ 1360 0118 00000000 		.4byte	0
+ 1361              	.LLST7:
+ 1362 011c 00000000 		.4byte	.LVL16
+ 1363 0120 18000000 		.4byte	.LVL19
+ 1364 0124 0100     		.2byte	0x1
+ 1365 0126 51       		.byte	0x51
+ 1366 0127 18000000 		.4byte	.LVL19
+ 1367 012b 1C000000 		.4byte	.LVL20
+ 1368 012f 0200     		.2byte	0x2
+ 1369 0131 72       		.byte	0x72
+ 1370 0132 00       		.sleb128 0
+ 1371 0133 1C000000 		.4byte	.LVL20
+ 1372 0137 1F000000 		.4byte	.LVL21-1
+ 1373 013b 0300     		.2byte	0x3
+ 1374 013d F3       		.byte	0xf3
+ 1375 013e 01       		.uleb128 0x1
+ 1376 013f 52       		.byte	0x52
+ 1377 0140 1F000000 		.4byte	.LVL21-1
+ 1378 0144 2C000000 		.4byte	.LFE4
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 31
+
+
+ 1379 0148 0400     		.2byte	0x4
+ 1380 014a F3       		.byte	0xf3
+ 1381 014b 01       		.uleb128 0x1
+ 1382 014c 51       		.byte	0x51
+ 1383 014d 9F       		.byte	0x9f
+ 1384 014e 00000000 		.4byte	0
+ 1385 0152 00000000 		.4byte	0
+ 1386              	.LLST8:
+ 1387 0156 00000000 		.4byte	.LVL16
+ 1388 015a 1C000000 		.4byte	.LVL20
+ 1389 015e 0100     		.2byte	0x1
+ 1390 0160 52       		.byte	0x52
+ 1391 0161 1C000000 		.4byte	.LVL20
+ 1392 0165 2C000000 		.4byte	.LFE4
+ 1393 0169 0400     		.2byte	0x4
+ 1394 016b F3       		.byte	0xf3
+ 1395 016c 01       		.uleb128 0x1
+ 1396 016d 52       		.byte	0x52
+ 1397 016e 9F       		.byte	0x9f
+ 1398 016f 00000000 		.4byte	0
+ 1399 0173 00000000 		.4byte	0
+ 1400              	.LLST9:
+ 1401 0177 00000000 		.4byte	.LVL16
+ 1402 017b 04000000 		.4byte	.LVL17
+ 1403 017f 0100     		.2byte	0x1
+ 1404 0181 53       		.byte	0x53
+ 1405 0182 04000000 		.4byte	.LVL17
+ 1406 0186 2C000000 		.4byte	.LFE4
+ 1407 018a 0400     		.2byte	0x4
+ 1408 018c F3       		.byte	0xf3
+ 1409 018d 01       		.uleb128 0x1
+ 1410 018e 53       		.byte	0x53
+ 1411 018f 9F       		.byte	0x9f
+ 1412 0190 00000000 		.4byte	0
+ 1413 0194 00000000 		.4byte	0
+ 1414              	.LLST10:
+ 1415 0198 00000000 		.4byte	.LVL16
+ 1416 019c 24000000 		.4byte	.LVL22
+ 1417 01a0 0200     		.2byte	0x2
+ 1418 01a2 31       		.byte	0x31
+ 1419 01a3 9F       		.byte	0x9f
+ 1420 01a4 24000000 		.4byte	.LVL22
+ 1421 01a8 2C000000 		.4byte	.LFE4
+ 1422 01ac 0100     		.2byte	0x1
+ 1423 01ae 50       		.byte	0x50
+ 1424 01af 00000000 		.4byte	0
+ 1425 01b3 00000000 		.4byte	0
+ 1426              		.section	.debug_aranges,"",%progbits
+ 1427 0000 44000000 		.4byte	0x44
+ 1428 0004 0200     		.2byte	0x2
+ 1429 0006 00000000 		.4byte	.Ldebug_info0
+ 1430 000a 04       		.byte	0x4
+ 1431 000b 00       		.byte	0
+ 1432 000c 0000     		.2byte	0
+ 1433 000e 0000     		.2byte	0
+ 1434 0010 00000000 		.4byte	.LFB5
+ 1435 0014 4C000000 		.4byte	.LFE5-.LFB5
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 32
+
+
+ 1436 0018 00000000 		.4byte	.LFB0
+ 1437 001c 30000000 		.4byte	.LFE0-.LFB0
+ 1438 0020 00000000 		.4byte	.LFB1
+ 1439 0024 08000000 		.4byte	.LFE1-.LFB1
+ 1440 0028 00000000 		.4byte	.LFB2
+ 1441 002c 24000000 		.4byte	.LFE2-.LFB2
+ 1442 0030 00000000 		.4byte	.LFB3
+ 1443 0034 64000000 		.4byte	.LFE3-.LFB3
+ 1444 0038 00000000 		.4byte	.LFB4
+ 1445 003c 2C000000 		.4byte	.LFE4-.LFB4
+ 1446 0040 00000000 		.4byte	0
+ 1447 0044 00000000 		.4byte	0
+ 1448              		.section	.debug_ranges,"",%progbits
+ 1449              	.Ldebug_ranges0:
+ 1450 0000 00000000 		.4byte	.LFB5
+ 1451 0004 4C000000 		.4byte	.LFE5
+ 1452 0008 00000000 		.4byte	.LFB0
+ 1453 000c 30000000 		.4byte	.LFE0
+ 1454 0010 00000000 		.4byte	.LFB1
+ 1455 0014 08000000 		.4byte	.LFE1
+ 1456 0018 00000000 		.4byte	.LFB2
+ 1457 001c 24000000 		.4byte	.LFE2
+ 1458 0020 00000000 		.4byte	.LFB3
+ 1459 0024 64000000 		.4byte	.LFE3
+ 1460 0028 00000000 		.4byte	.LFB4
+ 1461 002c 2C000000 		.4byte	.LFE4
+ 1462 0030 00000000 		.4byte	0
+ 1463 0034 00000000 		.4byte	0
+ 1464              		.section	.debug_line,"",%progbits
+ 1465              	.Ldebug_line0:
+ 1466 0000 41010000 		.section	.debug_str,"MS",%progbits,1
+ 1466      02009300 
+ 1466      00000201 
+ 1466      FB0E0D00 
+ 1466      01010101 
+ 1467              	.LASF25:
+ 1468 0000 74696D65 		.ascii	"timeoutMs\000"
+ 1468      6F75744D 
+ 1468      7300
+ 1469              	.LASF15:
+ 1470 000a 63797374 		.ascii	"cystatus\000"
+ 1470      61747573 
+ 1470      00
+ 1471              	.LASF16:
+ 1472 0013 72656733 		.ascii	"reg32\000"
+ 1472      3200
+ 1473              	.LASF39:
+ 1474 0019 4932435F 		.ascii	"I2C_Slave_Stop\000"
+ 1474      536C6176 
+ 1474      655F5374 
+ 1474      6F7000
+ 1475              	.LASF24:
+ 1476 0028 73746174 		.ascii	"status\000"
+ 1476      757300
+ 1477              	.LASF41:
+ 1478 002f 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1478      4320342E 
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 33
+
+
+ 1478      392E3320 
+ 1478      32303135 
+ 1478      30333033 
+ 1479 0062 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 1479      20726576 
+ 1479      6973696F 
+ 1479      6E203232 
+ 1479      31323230 
+ 1480 0095 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1480      66756E63 
+ 1480      74696F6E 
+ 1480      2D736563 
+ 1480      74696F6E 
+ 1481              	.LASF33:
+ 1482 00bd 4932435F 		.ascii	"I2C_Slave_slRdBufSize\000"
+ 1482      536C6176 
+ 1482      655F736C 
+ 1482      52644275 
+ 1482      6653697A 
+ 1483              	.LASF22:
+ 1484 00d3 636F756E 		.ascii	"count\000"
+ 1484      7400
+ 1485              	.LASF37:
+ 1486 00d9 4932435F 		.ascii	"I2C_Slave_SetCustomInterruptHandler\000"
+ 1486      536C6176 
+ 1486      655F5365 
+ 1486      74437573 
+ 1486      746F6D49 
+ 1487              	.LASF3:
+ 1488 00fd 73686F72 		.ascii	"short unsigned int\000"
+ 1488      7420756E 
+ 1488      7369676E 
+ 1488      65642069 
+ 1488      6E7400
+ 1489              	.LASF29:
+ 1490 0110 4932435F 		.ascii	"I2C_Slave_slWriteBuf\000"
+ 1490      536C6176 
+ 1490      655F736C 
+ 1490      57726974 
+ 1490      65427566 
+ 1491              	.LASF32:
+ 1492 0125 4932435F 		.ascii	"I2C_Slave_slWrBufIndex\000"
+ 1492      536C6176 
+ 1492      655F736C 
+ 1492      57724275 
+ 1492      66496E64 
+ 1493              	.LASF43:
+ 1494 013c 433A5C55 		.ascii	"C:\\Users\\Tim Chen\\Desktop\\Test proximity auto t"
+ 1494      73657273 
+ 1494      5C54696D 
+ 1494      20436865 
+ 1494      6E5C4465 
+ 1495 016b 756E696E 		.ascii	"uning\\MH-8W_Proximity_Board_V9_20170619\\MH-8W_PRO"
+ 1495      675C4D48 
+ 1495      2D38575F 
+ 1495      50726F78 
+ 1495      696D6974 
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 34
+
+
+ 1496 019c 58494D49 		.ascii	"XIMITY.cydsn\\Bootloader_V01\\Bootloader_PSoC4_Exam"
+ 1496      54592E63 
+ 1496      7964736E 
+ 1496      5C426F6F 
+ 1496      746C6F61 
+ 1497 01cd 706C6530 		.ascii	"ple01.cydsn\000"
+ 1497      312E6379 
+ 1497      64736E00 
+ 1498              	.LASF20:
+ 1499 01d9 70446174 		.ascii	"pData\000"
+ 1499      6100
+ 1500              	.LASF12:
+ 1501 01df 666C6F61 		.ascii	"float\000"
+ 1501      7400
+ 1502              	.LASF19:
+ 1503 01e5 4932435F 		.ascii	"I2C_Slave_I2CCyBtldrCommStop\000"
+ 1503      536C6176 
+ 1503      655F4932 
+ 1503      43437942 
+ 1503      746C6472 
+ 1504              	.LASF38:
+ 1505 0202 4932435F 		.ascii	"I2C_Slave_Start\000"
+ 1505      536C6176 
+ 1505      655F5374 
+ 1505      61727400 
+ 1506              	.LASF21:
+ 1507 0212 73697A65 		.ascii	"size\000"
+ 1507      00
+ 1508              	.LASF28:
+ 1509 0217 4932435F 		.ascii	"I2C_Slave_slReadBuf\000"
+ 1509      536C6176 
+ 1509      655F736C 
+ 1509      52656164 
+ 1509      42756600 
+ 1510              	.LASF5:
+ 1511 022b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1511      20756E73 
+ 1511      69676E65 
+ 1511      6420696E 
+ 1511      7400
+ 1512              	.LASF9:
+ 1513 023d 75696E74 		.ascii	"uint8\000"
+ 1513      3800
+ 1514              	.LASF36:
+ 1515 0243 4932435F 		.ascii	"I2C_Slave_I2CSlaveInitReadBuf\000"
+ 1515      536C6176 
+ 1515      655F4932 
+ 1515      43536C61 
+ 1515      7665496E 
+ 1516              	.LASF26:
+ 1517 0261 4932435F 		.ascii	"I2C_Slave_I2CCyBtldrCommRead\000"
+ 1517      536C6176 
+ 1517      655F4932 
+ 1517      43437942 
+ 1517      746C6472 
+ 1518              	.LASF1:
+ 1519 027e 756E7369 		.ascii	"unsigned char\000"
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 35
+
+
+ 1519      676E6564 
+ 1519      20636861 
+ 1519      7200
+ 1520              	.LASF13:
+ 1521 028c 646F7562 		.ascii	"double\000"
+ 1521      6C6500
+ 1522              	.LASF10:
+ 1523 0293 75696E74 		.ascii	"uint16\000"
+ 1523      313600
+ 1524              	.LASF11:
+ 1525 029a 75696E74 		.ascii	"uint32\000"
+ 1525      333200
+ 1526              	.LASF34:
+ 1527 02a1 4932435F 		.ascii	"I2C_Slave_slRdBufIndex\000"
+ 1527      536C6176 
+ 1527      655F736C 
+ 1527      52644275 
+ 1527      66496E64 
+ 1528              	.LASF8:
+ 1529 02b8 756E7369 		.ascii	"unsigned int\000"
+ 1529      676E6564 
+ 1529      20696E74 
+ 1529      00
+ 1530              	.LASF7:
+ 1531 02c5 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1531      206C6F6E 
+ 1531      6720756E 
+ 1531      7369676E 
+ 1531      65642069 
+ 1532              	.LASF45:
+ 1533 02dc 4932435F 		.ascii	"I2C_Slave_I2CCyBtldrCommReset\000"
+ 1533      536C6176 
+ 1533      655F4932 
+ 1533      43437942 
+ 1533      746C6472 
+ 1534              	.LASF44:
+ 1535 02fa 4932435F 		.ascii	"I2C_Slave_I2CResposeInsert\000"
+ 1535      536C6176 
+ 1535      655F4932 
+ 1535      43526573 
+ 1535      706F7365 
+ 1536              	.LASF23:
+ 1537 0315 74696D65 		.ascii	"timeOut\000"
+ 1537      4F757400 
+ 1538              	.LASF18:
+ 1539 031d 4932435F 		.ascii	"I2C_Slave_I2CCyBtldrCommStart\000"
+ 1539      536C6176 
+ 1539      655F4932 
+ 1539      43437942 
+ 1539      746C6472 
+ 1540              	.LASF17:
+ 1541 033b 73697A65 		.ascii	"sizetype\000"
+ 1541      74797065 
+ 1541      00
+ 1542              	.LASF6:
+ 1543 0344 6C6F6E67 		.ascii	"long long int\000"
+ 1543      206C6F6E 
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\ccyX0oX2.s 			page 36
+
+
+ 1543      6720696E 
+ 1543      7400
+ 1544              	.LASF40:
+ 1545 0352 6D656D63 		.ascii	"memcpy\000"
+ 1545      707900
+ 1546              	.LASF35:
+ 1547 0359 4932435F 		.ascii	"I2C_Slave_I2CSlaveInitWriteBuf\000"
+ 1547      536C6176 
+ 1547      655F4932 
+ 1547      43536C61 
+ 1547      7665496E 
+ 1548              	.LASF2:
+ 1549 0378 73686F72 		.ascii	"short int\000"
+ 1549      7420696E 
+ 1549      7400
+ 1550              	.LASF46:
+ 1551 0382 43794465 		.ascii	"CyDelay\000"
+ 1551      6C617900 
+ 1552              	.LASF4:
+ 1553 038a 6C6F6E67 		.ascii	"long int\000"
+ 1553      20696E74 
+ 1553      00
+ 1554              	.LASF14:
+ 1555 0393 63686172 		.ascii	"char\000"
+ 1555      00
+ 1556              	.LASF30:
+ 1557 0398 4932435F 		.ascii	"I2C_Slave_applyBuffer\000"
+ 1557      536C6176 
+ 1557      655F6170 
+ 1557      706C7942 
+ 1557      75666665 
+ 1558              	.LASF0:
+ 1559 03ae 7369676E 		.ascii	"signed char\000"
+ 1559      65642063 
+ 1559      68617200 
+ 1560              	.LASF27:
+ 1561 03ba 4932435F 		.ascii	"I2C_Slave_I2CCyBtldrCommWrite\000"
+ 1561      536C6176 
+ 1561      655F4932 
+ 1561      43437942 
+ 1561      746C6472 
+ 1562              	.LASF31:
+ 1563 03d8 4932435F 		.ascii	"I2C_Slave_slStatus\000"
+ 1563      536C6176 
+ 1563      655F736C 
+ 1563      53746174 
+ 1563      757300
+ 1564              	.LASF42:
+ 1565 03eb 47656E65 		.ascii	"Generated_Source\\PSoC4\\I2C_Slave_I2C_BOOT.c\000"
+ 1565      72617465 
+ 1565      645F536F 
+ 1565      75726365 
+ 1565      5C50536F 
+ 1566              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

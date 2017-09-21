@@ -1,0 +1,859 @@
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"I2C_Slave_PM.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.I2C_Slave_Sleep,"ax",%progbits
+  18              		.align	1
+  19              		.global	I2C_Slave_Sleep
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	I2C_Slave_Sleep, %function
+  23              	I2C_Slave_Sleep:
+  24              	.LFB0:
+  25              		.file 1 "Generated_Source\\PSoC4\\I2C_Slave_PM.c"
+   1:Generated_Source\PSoC4/I2C_Slave_PM.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/I2C_Slave_PM.c **** * \file I2C_Slave_PM.c
+   3:Generated_Source\PSoC4/I2C_Slave_PM.c **** * \version 3.20
+   4:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+   5:Generated_Source\PSoC4/I2C_Slave_PM.c **** * \brief
+   6:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  This file provides the source code to the Power Management support for
+   7:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  the SCB Component.
+   8:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+   9:Generated_Source\PSoC4/I2C_Slave_PM.c **** * Note:
+  10:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+  11:Generated_Source\PSoC4/I2C_Slave_PM.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/I2C_Slave_PM.c **** * \copyright
+  13:Generated_Source\PSoC4/I2C_Slave_PM.c **** * Copyright 2013-2016, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC4/I2C_Slave_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC4/I2C_Slave_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC4/I2C_Slave_PM.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC4/I2C_Slave_PM.c **** *******************************************************************************/
+  18:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  19:Generated_Source\PSoC4/I2C_Slave_PM.c **** #include "I2C_Slave.h"
+  20:Generated_Source\PSoC4/I2C_Slave_PM.c **** #include "I2C_Slave_PVT.h"
+  21:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  22:Generated_Source\PSoC4/I2C_Slave_PM.c **** #if(I2C_Slave_SCB_MODE_I2C_INC)
+  23:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #include "I2C_Slave_I2C_PVT.h"
+  24:Generated_Source\PSoC4/I2C_Slave_PM.c **** #endif /* (I2C_Slave_SCB_MODE_I2C_INC) */
+  25:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  26:Generated_Source\PSoC4/I2C_Slave_PM.c **** #if(I2C_Slave_SCB_MODE_EZI2C_INC)
+  27:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #include "I2C_Slave_EZI2C_PVT.h"
+  28:Generated_Source\PSoC4/I2C_Slave_PM.c **** #endif /* (I2C_Slave_SCB_MODE_EZI2C_INC) */
+  29:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  30:Generated_Source\PSoC4/I2C_Slave_PM.c **** #if(I2C_Slave_SCB_MODE_SPI_INC || I2C_Slave_SCB_MODE_UART_INC)
+  31:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #include "I2C_Slave_SPI_UART_PVT.h"
+  32:Generated_Source\PSoC4/I2C_Slave_PM.c **** #endif /* (I2C_Slave_SCB_MODE_SPI_INC || I2C_Slave_SCB_MODE_UART_INC) */
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 2
+
+
+  33:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  34:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  35:Generated_Source\PSoC4/I2C_Slave_PM.c **** /***************************************
+  36:Generated_Source\PSoC4/I2C_Slave_PM.c **** *   Backup Structure declaration
+  37:Generated_Source\PSoC4/I2C_Slave_PM.c **** ***************************************/
+  38:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  39:Generated_Source\PSoC4/I2C_Slave_PM.c **** #if(I2C_Slave_SCB_MODE_UNCONFIG_CONST_CFG || \
+  40:Generated_Source\PSoC4/I2C_Slave_PM.c ****    (I2C_Slave_SCB_MODE_I2C_CONST_CFG   && (!I2C_Slave_I2C_WAKE_ENABLE_CONST))   || \
+  41:Generated_Source\PSoC4/I2C_Slave_PM.c ****    (I2C_Slave_SCB_MODE_EZI2C_CONST_CFG && (!I2C_Slave_EZI2C_WAKE_ENABLE_CONST)) || \
+  42:Generated_Source\PSoC4/I2C_Slave_PM.c ****    (I2C_Slave_SCB_MODE_SPI_CONST_CFG   && (!I2C_Slave_SPI_WAKE_ENABLE_CONST))   || \
+  43:Generated_Source\PSoC4/I2C_Slave_PM.c ****    (I2C_Slave_SCB_MODE_UART_CONST_CFG  && (!I2C_Slave_UART_WAKE_ENABLE_CONST)))
+  44:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  45:Generated_Source\PSoC4/I2C_Slave_PM.c ****     I2C_Slave_BACKUP_STRUCT I2C_Slave_backup =
+  46:Generated_Source\PSoC4/I2C_Slave_PM.c ****     {
+  47:Generated_Source\PSoC4/I2C_Slave_PM.c ****         0u, /* enableState */
+  48:Generated_Source\PSoC4/I2C_Slave_PM.c ****     };
+  49:Generated_Source\PSoC4/I2C_Slave_PM.c **** #endif
+  50:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  51:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  52:Generated_Source\PSoC4/I2C_Slave_PM.c **** /*******************************************************************************
+  53:Generated_Source\PSoC4/I2C_Slave_PM.c **** * Function Name: I2C_Slave_Sleep
+  54:Generated_Source\PSoC4/I2C_Slave_PM.c **** ****************************************************************************//**
+  55:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+  56:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  Prepares the I2C_Slave component to enter Deep Sleep.
+  57:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  The “Enable wakeup from Deep Sleep Mode” selection has an influence on this 
+  58:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  function implementation:
+  59:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  - Checked: configures the component to be wakeup source from Deep Sleep.
+  60:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  - Unchecked: stores the current component state (enabled or disabled) and 
+  61:Generated_Source\PSoC4/I2C_Slave_PM.c **** *    disables the component. See SCB_Stop() function for details about component 
+  62:Generated_Source\PSoC4/I2C_Slave_PM.c **** *    disabling.
+  63:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+  64:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  Call the I2C_Slave_Sleep() function before calling the 
+  65:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  CyPmSysDeepSleep() function. 
+  66:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  Refer to the PSoC Creator System Reference Guide for more information about 
+  67:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  power management functions and Low power section of this document for the 
+  68:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  selected mode.
+  69:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+  70:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  This function should not be called before entering Sleep.
+  71:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+  72:Generated_Source\PSoC4/I2C_Slave_PM.c **** *******************************************************************************/
+  73:Generated_Source\PSoC4/I2C_Slave_PM.c **** void I2C_Slave_Sleep(void)
+  74:Generated_Source\PSoC4/I2C_Slave_PM.c **** {
+  26              		.loc 1 74 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+  75:Generated_Source\PSoC4/I2C_Slave_PM.c **** #if(I2C_Slave_SCB_MODE_UNCONFIG_CONST_CFG)
+  76:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+  77:Generated_Source\PSoC4/I2C_Slave_PM.c ****     if(I2C_Slave_SCB_WAKE_ENABLE_CHECK)
+  78:Generated_Source\PSoC4/I2C_Slave_PM.c ****     {
+  79:Generated_Source\PSoC4/I2C_Slave_PM.c ****         if(I2C_Slave_SCB_MODE_I2C_RUNTM_CFG)
+  80:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+  81:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_I2CSaveConfig();
+  82:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+  83:Generated_Source\PSoC4/I2C_Slave_PM.c ****         else if(I2C_Slave_SCB_MODE_EZI2C_RUNTM_CFG)
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 3
+
+
+  84:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+  85:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_EzI2CSaveConfig();
+  86:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+  87:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #if(!I2C_Slave_CY_SCBIP_V1)
+  88:Generated_Source\PSoC4/I2C_Slave_PM.c ****         else if(I2C_Slave_SCB_MODE_SPI_RUNTM_CFG)
+  89:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+  90:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_SpiSaveConfig();
+  91:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+  92:Generated_Source\PSoC4/I2C_Slave_PM.c ****         else if(I2C_Slave_SCB_MODE_UART_RUNTM_CFG)
+  93:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+  94:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_UartSaveConfig();
+  95:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+  96:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #endif /* (!I2C_Slave_CY_SCBIP_V1) */
+  97:Generated_Source\PSoC4/I2C_Slave_PM.c ****         else
+  98:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+  99:Generated_Source\PSoC4/I2C_Slave_PM.c ****             /* Unknown mode */
+ 100:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+ 101:Generated_Source\PSoC4/I2C_Slave_PM.c ****     }
+ 102:Generated_Source\PSoC4/I2C_Slave_PM.c ****     else
+ 103:Generated_Source\PSoC4/I2C_Slave_PM.c ****     {
+ 104:Generated_Source\PSoC4/I2C_Slave_PM.c ****         I2C_Slave_backup.enableState = (uint8) I2C_Slave_GET_CTRL_ENABLED;
+ 105:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 106:Generated_Source\PSoC4/I2C_Slave_PM.c ****         if(0u != I2C_Slave_backup.enableState)
+ 107:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+ 108:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_Stop();
+ 109:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+ 110:Generated_Source\PSoC4/I2C_Slave_PM.c ****     }
+ 111:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 112:Generated_Source\PSoC4/I2C_Slave_PM.c **** #else
+ 113:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 114:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #if (I2C_Slave_SCB_MODE_I2C_CONST_CFG && I2C_Slave_I2C_WAKE_ENABLE_CONST)
+ 115:Generated_Source\PSoC4/I2C_Slave_PM.c ****         I2C_Slave_I2CSaveConfig();
+ 116:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 117:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #elif (I2C_Slave_SCB_MODE_EZI2C_CONST_CFG && I2C_Slave_EZI2C_WAKE_ENABLE_CONST)
+ 118:Generated_Source\PSoC4/I2C_Slave_PM.c ****         I2C_Slave_EzI2CSaveConfig();
+ 119:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 120:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #elif (I2C_Slave_SCB_MODE_SPI_CONST_CFG && I2C_Slave_SPI_WAKE_ENABLE_CONST)
+ 121:Generated_Source\PSoC4/I2C_Slave_PM.c ****         I2C_Slave_SpiSaveConfig();
+ 122:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 123:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #elif (I2C_Slave_SCB_MODE_UART_CONST_CFG && I2C_Slave_UART_WAKE_ENABLE_CONST)
+ 124:Generated_Source\PSoC4/I2C_Slave_PM.c ****         I2C_Slave_UartSaveConfig();
+ 125:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 126:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #else
+ 127:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 128:Generated_Source\PSoC4/I2C_Slave_PM.c ****         I2C_Slave_backup.enableState = (uint8) I2C_Slave_GET_CTRL_ENABLED;
+  32              		.loc 1 128 0
+  33 0002 044B     		ldr	r3, .L7
+  34 0004 044A     		ldr	r2, .L7+4
+  35 0006 1B68     		ldr	r3, [r3]
+  36 0008 DB0F     		lsr	r3, r3, #31
+  37 000a 1370     		strb	r3, [r2]
+ 129:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 130:Generated_Source\PSoC4/I2C_Slave_PM.c ****         if(0u != I2C_Slave_backup.enableState)
+  38              		.loc 1 130 0
+  39 000c 01D0     		beq	.L1
+ 131:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+ 132:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_Stop();
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 4
+
+
+  40              		.loc 1 132 0
+  41 000e FFF7FEFF 		bl	I2C_Slave_Stop
+  42              	.LVL0:
+  43              	.L1:
+ 133:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+ 134:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 135:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #endif /* defined (I2C_Slave_SCB_MODE_I2C_CONST_CFG) && (I2C_Slave_I2C_WAKE_ENABLE_CONST) */
+ 136:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 137:Generated_Source\PSoC4/I2C_Slave_PM.c **** #endif /* (I2C_Slave_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 138:Generated_Source\PSoC4/I2C_Slave_PM.c **** }
+  44              		.loc 1 138 0
+  45              		@ sp needed
+  46 0012 08BD     		pop	{r3, pc}
+  47              	.L8:
+  48              		.align	2
+  49              	.L7:
+  50 0014 00000640 		.word	1074135040
+  51 0018 00000000 		.word	.LANCHOR0
+  52              		.cfi_endproc
+  53              	.LFE0:
+  54              		.size	I2C_Slave_Sleep, .-I2C_Slave_Sleep
+  55              		.section	.text.I2C_Slave_Wakeup,"ax",%progbits
+  56              		.align	1
+  57              		.global	I2C_Slave_Wakeup
+  58              		.code	16
+  59              		.thumb_func
+  60              		.type	I2C_Slave_Wakeup, %function
+  61              	I2C_Slave_Wakeup:
+  62              	.LFB1:
+ 139:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 140:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 141:Generated_Source\PSoC4/I2C_Slave_PM.c **** /*******************************************************************************
+ 142:Generated_Source\PSoC4/I2C_Slave_PM.c **** * Function Name: I2C_Slave_Wakeup
+ 143:Generated_Source\PSoC4/I2C_Slave_PM.c **** ****************************************************************************//**
+ 144:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+ 145:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  Prepares the I2C_Slave component for Active mode operation after 
+ 146:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  Deep Sleep.
+ 147:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  The “Enable wakeup from Deep Sleep Mode” selection has influence on this 
+ 148:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  function implementation:
+ 149:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  - Checked: restores the component Active mode configuration.
+ 150:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  - Unchecked: enables the component if it was enabled before enter Deep Sleep.
+ 151:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+ 152:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  This function should not be called after exiting Sleep.
+ 153:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+ 154:Generated_Source\PSoC4/I2C_Slave_PM.c **** *  \sideeffect
+ 155:Generated_Source\PSoC4/I2C_Slave_PM.c **** *   Calling the I2C_Slave_Wakeup() function without first calling the 
+ 156:Generated_Source\PSoC4/I2C_Slave_PM.c **** *   I2C_Slave_Sleep() function may produce unexpected behavior.
+ 157:Generated_Source\PSoC4/I2C_Slave_PM.c **** *
+ 158:Generated_Source\PSoC4/I2C_Slave_PM.c **** *******************************************************************************/
+ 159:Generated_Source\PSoC4/I2C_Slave_PM.c **** void I2C_Slave_Wakeup(void)
+ 160:Generated_Source\PSoC4/I2C_Slave_PM.c **** {
+  63              		.loc 1 160 0
+  64              		.cfi_startproc
+  65 0000 08B5     		push	{r3, lr}
+  66              		.cfi_def_cfa_offset 8
+  67              		.cfi_offset 3, -8
+  68              		.cfi_offset 14, -4
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 5
+
+
+ 161:Generated_Source\PSoC4/I2C_Slave_PM.c **** #if(I2C_Slave_SCB_MODE_UNCONFIG_CONST_CFG)
+ 162:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 163:Generated_Source\PSoC4/I2C_Slave_PM.c ****     if(I2C_Slave_SCB_WAKE_ENABLE_CHECK)
+ 164:Generated_Source\PSoC4/I2C_Slave_PM.c ****     {
+ 165:Generated_Source\PSoC4/I2C_Slave_PM.c ****         if(I2C_Slave_SCB_MODE_I2C_RUNTM_CFG)
+ 166:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+ 167:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_I2CRestoreConfig();
+ 168:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+ 169:Generated_Source\PSoC4/I2C_Slave_PM.c ****         else if(I2C_Slave_SCB_MODE_EZI2C_RUNTM_CFG)
+ 170:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+ 171:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_EzI2CRestoreConfig();
+ 172:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+ 173:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #if(!I2C_Slave_CY_SCBIP_V1)
+ 174:Generated_Source\PSoC4/I2C_Slave_PM.c ****         else if(I2C_Slave_SCB_MODE_SPI_RUNTM_CFG)
+ 175:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+ 176:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_SpiRestoreConfig();
+ 177:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+ 178:Generated_Source\PSoC4/I2C_Slave_PM.c ****         else if(I2C_Slave_SCB_MODE_UART_RUNTM_CFG)
+ 179:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+ 180:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_UartRestoreConfig();
+ 181:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+ 182:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #endif /* (!I2C_Slave_CY_SCBIP_V1) */
+ 183:Generated_Source\PSoC4/I2C_Slave_PM.c ****         else
+ 184:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+ 185:Generated_Source\PSoC4/I2C_Slave_PM.c ****             /* Unknown mode */
+ 186:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+ 187:Generated_Source\PSoC4/I2C_Slave_PM.c ****     }
+ 188:Generated_Source\PSoC4/I2C_Slave_PM.c ****     else
+ 189:Generated_Source\PSoC4/I2C_Slave_PM.c ****     {
+ 190:Generated_Source\PSoC4/I2C_Slave_PM.c ****         if(0u != I2C_Slave_backup.enableState)
+ 191:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+ 192:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_Enable();
+ 193:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+ 194:Generated_Source\PSoC4/I2C_Slave_PM.c ****     }
+ 195:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 196:Generated_Source\PSoC4/I2C_Slave_PM.c **** #else
+ 197:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 198:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #if (I2C_Slave_SCB_MODE_I2C_CONST_CFG  && I2C_Slave_I2C_WAKE_ENABLE_CONST)
+ 199:Generated_Source\PSoC4/I2C_Slave_PM.c ****         I2C_Slave_I2CRestoreConfig();
+ 200:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 201:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #elif (I2C_Slave_SCB_MODE_EZI2C_CONST_CFG && I2C_Slave_EZI2C_WAKE_ENABLE_CONST)
+ 202:Generated_Source\PSoC4/I2C_Slave_PM.c ****         I2C_Slave_EzI2CRestoreConfig();
+ 203:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 204:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #elif (I2C_Slave_SCB_MODE_SPI_CONST_CFG && I2C_Slave_SPI_WAKE_ENABLE_CONST)
+ 205:Generated_Source\PSoC4/I2C_Slave_PM.c ****         I2C_Slave_SpiRestoreConfig();
+ 206:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 207:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #elif (I2C_Slave_SCB_MODE_UART_CONST_CFG && I2C_Slave_UART_WAKE_ENABLE_CONST)
+ 208:Generated_Source\PSoC4/I2C_Slave_PM.c ****         I2C_Slave_UartRestoreConfig();
+ 209:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 210:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #else
+ 211:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 212:Generated_Source\PSoC4/I2C_Slave_PM.c ****         if(0u != I2C_Slave_backup.enableState)
+  69              		.loc 1 212 0
+  70 0002 034B     		ldr	r3, .L14
+  71 0004 1B78     		ldrb	r3, [r3]
+  72 0006 002B     		cmp	r3, #0
+  73 0008 01D0     		beq	.L9
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 6
+
+
+ 213:Generated_Source\PSoC4/I2C_Slave_PM.c ****         {
+ 214:Generated_Source\PSoC4/I2C_Slave_PM.c ****             I2C_Slave_Enable();
+  74              		.loc 1 214 0
+  75 000a FFF7FEFF 		bl	I2C_Slave_Enable
+  76              	.LVL1:
+  77              	.L9:
+ 215:Generated_Source\PSoC4/I2C_Slave_PM.c ****         }
+ 216:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 217:Generated_Source\PSoC4/I2C_Slave_PM.c ****     #endif /* (I2C_Slave_I2C_WAKE_ENABLE_CONST) */
+ 218:Generated_Source\PSoC4/I2C_Slave_PM.c **** 
+ 219:Generated_Source\PSoC4/I2C_Slave_PM.c **** #endif /* (I2C_Slave_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 220:Generated_Source\PSoC4/I2C_Slave_PM.c **** }
+  78              		.loc 1 220 0
+  79              		@ sp needed
+  80 000e 08BD     		pop	{r3, pc}
+  81              	.L15:
+  82              		.align	2
+  83              	.L14:
+  84 0010 00000000 		.word	.LANCHOR0
+  85              		.cfi_endproc
+  86              	.LFE1:
+  87              		.size	I2C_Slave_Wakeup, .-I2C_Slave_Wakeup
+  88              		.global	I2C_Slave_backup
+  89              		.bss
+  90              		.set	.LANCHOR0,. + 0
+  91              		.type	I2C_Slave_backup, %object
+  92              		.size	I2C_Slave_backup, 1
+  93              	I2C_Slave_backup:
+  94 0000 00       		.space	1
+  95              		.text
+  96              	.Letext0:
+  97              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+  98              		.file 3 "Generated_Source\\PSoC4\\I2C_Slave.h"
+  99              		.section	.debug_info,"",%progbits
+ 100              	.Ldebug_info0:
+ 101 0000 2A010000 		.4byte	0x12a
+ 102 0004 0400     		.2byte	0x4
+ 103 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 104 000a 04       		.byte	0x4
+ 105 000b 01       		.uleb128 0x1
+ 106 000c 7D000000 		.4byte	.LASF21
+ 107 0010 01       		.byte	0x1
+ 108 0011 2E000000 		.4byte	.LASF22
+ 109 0015 B4010000 		.4byte	.LASF23
+ 110 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 111 001d 00000000 		.4byte	0
+ 112 0021 00000000 		.4byte	.Ldebug_line0
+ 113 0025 02       		.uleb128 0x2
+ 114 0026 01       		.byte	0x1
+ 115 0027 06       		.byte	0x6
+ 116 0028 A8010000 		.4byte	.LASF0
+ 117 002c 02       		.uleb128 0x2
+ 118 002d 01       		.byte	0x1
+ 119 002e 08       		.byte	0x8
+ 120 002f 79010000 		.4byte	.LASF1
+ 121 0033 02       		.uleb128 0x2
+ 122 0034 02       		.byte	0x2
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 7
+
+
+ 123 0035 05       		.byte	0x5
+ 124 0036 66020000 		.4byte	.LASF2
+ 125 003a 02       		.uleb128 0x2
+ 126 003b 02       		.byte	0x2
+ 127 003c 07       		.byte	0x7
+ 128 003d 34010000 		.4byte	.LASF3
+ 129 0041 02       		.uleb128 0x2
+ 130 0042 04       		.byte	0x4
+ 131 0043 05       		.byte	0x5
+ 132 0044 8C010000 		.4byte	.LASF4
+ 133 0048 02       		.uleb128 0x2
+ 134 0049 04       		.byte	0x4
+ 135 004a 07       		.byte	0x7
+ 136 004b 0B010000 		.4byte	.LASF5
+ 137 004f 02       		.uleb128 0x2
+ 138 0050 08       		.byte	0x8
+ 139 0051 05       		.byte	0x5
+ 140 0052 00000000 		.4byte	.LASF6
+ 141 0056 02       		.uleb128 0x2
+ 142 0057 08       		.byte	0x8
+ 143 0058 07       		.byte	0x7
+ 144 0059 1D010000 		.4byte	.LASF7
+ 145 005d 03       		.uleb128 0x3
+ 146 005e 04       		.byte	0x4
+ 147 005f 05       		.byte	0x5
+ 148 0060 696E7400 		.ascii	"int\000"
+ 149 0064 02       		.uleb128 0x2
+ 150 0065 04       		.byte	0x4
+ 151 0066 07       		.byte	0x7
+ 152 0067 21000000 		.4byte	.LASF8
+ 153 006b 04       		.uleb128 0x4
+ 154 006c A2010000 		.4byte	.LASF9
+ 155 0070 02       		.byte	0x2
+ 156 0071 B901     		.2byte	0x1b9
+ 157 0073 2C000000 		.4byte	0x2c
+ 158 0077 04       		.uleb128 0x4
+ 159 0078 0E000000 		.4byte	.LASF10
+ 160 007c 02       		.byte	0x2
+ 161 007d BB01     		.2byte	0x1bb
+ 162 007f 48000000 		.4byte	0x48
+ 163 0083 02       		.uleb128 0x2
+ 164 0084 04       		.byte	0x4
+ 165 0085 04       		.byte	0x4
+ 166 0086 51020000 		.4byte	.LASF11
+ 167 008a 02       		.uleb128 0x2
+ 168 008b 08       		.byte	0x8
+ 169 008c 04       		.byte	0x4
+ 170 008d 95010000 		.4byte	.LASF12
+ 171 0091 02       		.uleb128 0x2
+ 172 0092 01       		.byte	0x1
+ 173 0093 08       		.byte	0x8
+ 174 0094 87010000 		.4byte	.LASF13
+ 175 0098 04       		.uleb128 0x4
+ 176 0099 9C010000 		.4byte	.LASF14
+ 177 009d 02       		.byte	0x2
+ 178 009e 6502     		.2byte	0x265
+ 179 00a0 A4000000 		.4byte	0xa4
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 8
+
+
+ 180 00a4 05       		.uleb128 0x5
+ 181 00a5 77000000 		.4byte	0x77
+ 182 00a9 02       		.uleb128 0x2
+ 183 00aa 04       		.byte	0x4
+ 184 00ab 07       		.byte	0x7
+ 185 00ac 70020000 		.4byte	.LASF15
+ 186 00b0 06       		.uleb128 0x6
+ 187 00b1 01       		.byte	0x1
+ 188 00b2 03       		.byte	0x3
+ 189 00b3 5C       		.byte	0x5c
+ 190 00b4 C5000000 		.4byte	0xc5
+ 191 00b8 07       		.uleb128 0x7
+ 192 00b9 15000000 		.4byte	.LASF24
+ 193 00bd 03       		.byte	0x3
+ 194 00be 5E       		.byte	0x5e
+ 195 00bf 6B000000 		.4byte	0x6b
+ 196 00c3 00       		.byte	0
+ 197 00c4 00       		.byte	0
+ 198 00c5 08       		.uleb128 0x8
+ 199 00c6 54000000 		.4byte	.LASF16
+ 200 00ca 03       		.byte	0x3
+ 201 00cb 5F       		.byte	0x5f
+ 202 00cc B0000000 		.4byte	0xb0
+ 203 00d0 09       		.uleb128 0x9
+ 204 00d1 58010000 		.4byte	.LASF17
+ 205 00d5 01       		.byte	0x1
+ 206 00d6 49       		.byte	0x49
+ 207 00d7 00000000 		.4byte	.LFB0
+ 208 00db 1C000000 		.4byte	.LFE0-.LFB0
+ 209 00df 01       		.uleb128 0x1
+ 210 00e0 9C       		.byte	0x9c
+ 211 00e1 EF000000 		.4byte	0xef
+ 212 00e5 0A       		.uleb128 0xa
+ 213 00e6 12000000 		.4byte	.LVL0
+ 214 00ea 1F010000 		.4byte	0x11f
+ 215 00ee 00       		.byte	0
+ 216 00ef 09       		.uleb128 0x9
+ 217 00f0 47010000 		.4byte	.LASF18
+ 218 00f4 01       		.byte	0x1
+ 219 00f5 9F       		.byte	0x9f
+ 220 00f6 00000000 		.4byte	.LFB1
+ 221 00fa 14000000 		.4byte	.LFE1-.LFB1
+ 222 00fe 01       		.uleb128 0x1
+ 223 00ff 9C       		.byte	0x9c
+ 224 0100 0E010000 		.4byte	0x10e
+ 225 0104 0A       		.uleb128 0xa
+ 226 0105 0E000000 		.4byte	.LVL1
+ 227 0109 26010000 		.4byte	0x126
+ 228 010d 00       		.byte	0
+ 229 010e 0B       		.uleb128 0xb
+ 230 010f 6C000000 		.4byte	.LASF25
+ 231 0113 01       		.byte	0x1
+ 232 0114 2D       		.byte	0x2d
+ 233 0115 C5000000 		.4byte	0xc5
+ 234 0119 05       		.uleb128 0x5
+ 235 011a 03       		.byte	0x3
+ 236 011b 00000000 		.4byte	I2C_Slave_backup
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 9
+
+
+ 237 011f 0C       		.uleb128 0xc
+ 238 0120 57020000 		.4byte	.LASF19
+ 239 0124 03       		.byte	0x3
+ 240 0125 6F       		.byte	0x6f
+ 241 0126 0C       		.uleb128 0xc
+ 242 0127 68010000 		.4byte	.LASF20
+ 243 012b 03       		.byte	0x3
+ 244 012c 6D       		.byte	0x6d
+ 245 012d 00       		.byte	0
+ 246              		.section	.debug_abbrev,"",%progbits
+ 247              	.Ldebug_abbrev0:
+ 248 0000 01       		.uleb128 0x1
+ 249 0001 11       		.uleb128 0x11
+ 250 0002 01       		.byte	0x1
+ 251 0003 25       		.uleb128 0x25
+ 252 0004 0E       		.uleb128 0xe
+ 253 0005 13       		.uleb128 0x13
+ 254 0006 0B       		.uleb128 0xb
+ 255 0007 03       		.uleb128 0x3
+ 256 0008 0E       		.uleb128 0xe
+ 257 0009 1B       		.uleb128 0x1b
+ 258 000a 0E       		.uleb128 0xe
+ 259 000b 55       		.uleb128 0x55
+ 260 000c 17       		.uleb128 0x17
+ 261 000d 11       		.uleb128 0x11
+ 262 000e 01       		.uleb128 0x1
+ 263 000f 10       		.uleb128 0x10
+ 264 0010 17       		.uleb128 0x17
+ 265 0011 00       		.byte	0
+ 266 0012 00       		.byte	0
+ 267 0013 02       		.uleb128 0x2
+ 268 0014 24       		.uleb128 0x24
+ 269 0015 00       		.byte	0
+ 270 0016 0B       		.uleb128 0xb
+ 271 0017 0B       		.uleb128 0xb
+ 272 0018 3E       		.uleb128 0x3e
+ 273 0019 0B       		.uleb128 0xb
+ 274 001a 03       		.uleb128 0x3
+ 275 001b 0E       		.uleb128 0xe
+ 276 001c 00       		.byte	0
+ 277 001d 00       		.byte	0
+ 278 001e 03       		.uleb128 0x3
+ 279 001f 24       		.uleb128 0x24
+ 280 0020 00       		.byte	0
+ 281 0021 0B       		.uleb128 0xb
+ 282 0022 0B       		.uleb128 0xb
+ 283 0023 3E       		.uleb128 0x3e
+ 284 0024 0B       		.uleb128 0xb
+ 285 0025 03       		.uleb128 0x3
+ 286 0026 08       		.uleb128 0x8
+ 287 0027 00       		.byte	0
+ 288 0028 00       		.byte	0
+ 289 0029 04       		.uleb128 0x4
+ 290 002a 16       		.uleb128 0x16
+ 291 002b 00       		.byte	0
+ 292 002c 03       		.uleb128 0x3
+ 293 002d 0E       		.uleb128 0xe
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 10
+
+
+ 294 002e 3A       		.uleb128 0x3a
+ 295 002f 0B       		.uleb128 0xb
+ 296 0030 3B       		.uleb128 0x3b
+ 297 0031 05       		.uleb128 0x5
+ 298 0032 49       		.uleb128 0x49
+ 299 0033 13       		.uleb128 0x13
+ 300 0034 00       		.byte	0
+ 301 0035 00       		.byte	0
+ 302 0036 05       		.uleb128 0x5
+ 303 0037 35       		.uleb128 0x35
+ 304 0038 00       		.byte	0
+ 305 0039 49       		.uleb128 0x49
+ 306 003a 13       		.uleb128 0x13
+ 307 003b 00       		.byte	0
+ 308 003c 00       		.byte	0
+ 309 003d 06       		.uleb128 0x6
+ 310 003e 13       		.uleb128 0x13
+ 311 003f 01       		.byte	0x1
+ 312 0040 0B       		.uleb128 0xb
+ 313 0041 0B       		.uleb128 0xb
+ 314 0042 3A       		.uleb128 0x3a
+ 315 0043 0B       		.uleb128 0xb
+ 316 0044 3B       		.uleb128 0x3b
+ 317 0045 0B       		.uleb128 0xb
+ 318 0046 01       		.uleb128 0x1
+ 319 0047 13       		.uleb128 0x13
+ 320 0048 00       		.byte	0
+ 321 0049 00       		.byte	0
+ 322 004a 07       		.uleb128 0x7
+ 323 004b 0D       		.uleb128 0xd
+ 324 004c 00       		.byte	0
+ 325 004d 03       		.uleb128 0x3
+ 326 004e 0E       		.uleb128 0xe
+ 327 004f 3A       		.uleb128 0x3a
+ 328 0050 0B       		.uleb128 0xb
+ 329 0051 3B       		.uleb128 0x3b
+ 330 0052 0B       		.uleb128 0xb
+ 331 0053 49       		.uleb128 0x49
+ 332 0054 13       		.uleb128 0x13
+ 333 0055 38       		.uleb128 0x38
+ 334 0056 0B       		.uleb128 0xb
+ 335 0057 00       		.byte	0
+ 336 0058 00       		.byte	0
+ 337 0059 08       		.uleb128 0x8
+ 338 005a 16       		.uleb128 0x16
+ 339 005b 00       		.byte	0
+ 340 005c 03       		.uleb128 0x3
+ 341 005d 0E       		.uleb128 0xe
+ 342 005e 3A       		.uleb128 0x3a
+ 343 005f 0B       		.uleb128 0xb
+ 344 0060 3B       		.uleb128 0x3b
+ 345 0061 0B       		.uleb128 0xb
+ 346 0062 49       		.uleb128 0x49
+ 347 0063 13       		.uleb128 0x13
+ 348 0064 00       		.byte	0
+ 349 0065 00       		.byte	0
+ 350 0066 09       		.uleb128 0x9
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 11
+
+
+ 351 0067 2E       		.uleb128 0x2e
+ 352 0068 01       		.byte	0x1
+ 353 0069 3F       		.uleb128 0x3f
+ 354 006a 19       		.uleb128 0x19
+ 355 006b 03       		.uleb128 0x3
+ 356 006c 0E       		.uleb128 0xe
+ 357 006d 3A       		.uleb128 0x3a
+ 358 006e 0B       		.uleb128 0xb
+ 359 006f 3B       		.uleb128 0x3b
+ 360 0070 0B       		.uleb128 0xb
+ 361 0071 27       		.uleb128 0x27
+ 362 0072 19       		.uleb128 0x19
+ 363 0073 11       		.uleb128 0x11
+ 364 0074 01       		.uleb128 0x1
+ 365 0075 12       		.uleb128 0x12
+ 366 0076 06       		.uleb128 0x6
+ 367 0077 40       		.uleb128 0x40
+ 368 0078 18       		.uleb128 0x18
+ 369 0079 9742     		.uleb128 0x2117
+ 370 007b 19       		.uleb128 0x19
+ 371 007c 01       		.uleb128 0x1
+ 372 007d 13       		.uleb128 0x13
+ 373 007e 00       		.byte	0
+ 374 007f 00       		.byte	0
+ 375 0080 0A       		.uleb128 0xa
+ 376 0081 898201   		.uleb128 0x4109
+ 377 0084 00       		.byte	0
+ 378 0085 11       		.uleb128 0x11
+ 379 0086 01       		.uleb128 0x1
+ 380 0087 31       		.uleb128 0x31
+ 381 0088 13       		.uleb128 0x13
+ 382 0089 00       		.byte	0
+ 383 008a 00       		.byte	0
+ 384 008b 0B       		.uleb128 0xb
+ 385 008c 34       		.uleb128 0x34
+ 386 008d 00       		.byte	0
+ 387 008e 03       		.uleb128 0x3
+ 388 008f 0E       		.uleb128 0xe
+ 389 0090 3A       		.uleb128 0x3a
+ 390 0091 0B       		.uleb128 0xb
+ 391 0092 3B       		.uleb128 0x3b
+ 392 0093 0B       		.uleb128 0xb
+ 393 0094 49       		.uleb128 0x49
+ 394 0095 13       		.uleb128 0x13
+ 395 0096 3F       		.uleb128 0x3f
+ 396 0097 19       		.uleb128 0x19
+ 397 0098 02       		.uleb128 0x2
+ 398 0099 18       		.uleb128 0x18
+ 399 009a 00       		.byte	0
+ 400 009b 00       		.byte	0
+ 401 009c 0C       		.uleb128 0xc
+ 402 009d 2E       		.uleb128 0x2e
+ 403 009e 00       		.byte	0
+ 404 009f 3F       		.uleb128 0x3f
+ 405 00a0 19       		.uleb128 0x19
+ 406 00a1 03       		.uleb128 0x3
+ 407 00a2 0E       		.uleb128 0xe
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 12
+
+
+ 408 00a3 3A       		.uleb128 0x3a
+ 409 00a4 0B       		.uleb128 0xb
+ 410 00a5 3B       		.uleb128 0x3b
+ 411 00a6 0B       		.uleb128 0xb
+ 412 00a7 27       		.uleb128 0x27
+ 413 00a8 19       		.uleb128 0x19
+ 414 00a9 3C       		.uleb128 0x3c
+ 415 00aa 19       		.uleb128 0x19
+ 416 00ab 00       		.byte	0
+ 417 00ac 00       		.byte	0
+ 418 00ad 00       		.byte	0
+ 419              		.section	.debug_aranges,"",%progbits
+ 420 0000 24000000 		.4byte	0x24
+ 421 0004 0200     		.2byte	0x2
+ 422 0006 00000000 		.4byte	.Ldebug_info0
+ 423 000a 04       		.byte	0x4
+ 424 000b 00       		.byte	0
+ 425 000c 0000     		.2byte	0
+ 426 000e 0000     		.2byte	0
+ 427 0010 00000000 		.4byte	.LFB0
+ 428 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 429 0018 00000000 		.4byte	.LFB1
+ 430 001c 14000000 		.4byte	.LFE1-.LFB1
+ 431 0020 00000000 		.4byte	0
+ 432 0024 00000000 		.4byte	0
+ 433              		.section	.debug_ranges,"",%progbits
+ 434              	.Ldebug_ranges0:
+ 435 0000 00000000 		.4byte	.LFB0
+ 436 0004 1C000000 		.4byte	.LFE0
+ 437 0008 00000000 		.4byte	.LFB1
+ 438 000c 14000000 		.4byte	.LFE1
+ 439 0010 00000000 		.4byte	0
+ 440 0014 00000000 		.4byte	0
+ 441              		.section	.debug_line,"",%progbits
+ 442              	.Ldebug_line0:
+ 443 0000 89000000 		.section	.debug_str,"MS",%progbits,1
+ 443      02005800 
+ 443      00000201 
+ 443      FB0E0D00 
+ 443      01010101 
+ 444              	.LASF6:
+ 445 0000 6C6F6E67 		.ascii	"long long int\000"
+ 445      206C6F6E 
+ 445      6720696E 
+ 445      7400
+ 446              	.LASF10:
+ 447 000e 75696E74 		.ascii	"uint32\000"
+ 447      333200
+ 448              	.LASF24:
+ 449 0015 656E6162 		.ascii	"enableState\000"
+ 449      6C655374 
+ 449      61746500 
+ 450              	.LASF8:
+ 451 0021 756E7369 		.ascii	"unsigned int\000"
+ 451      676E6564 
+ 451      20696E74 
+ 451      00
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 13
+
+
+ 452              	.LASF22:
+ 453 002e 47656E65 		.ascii	"Generated_Source\\PSoC4\\I2C_Slave_PM.c\000"
+ 453      72617465 
+ 453      645F536F 
+ 453      75726365 
+ 453      5C50536F 
+ 454              	.LASF16:
+ 455 0054 4932435F 		.ascii	"I2C_Slave_BACKUP_STRUCT\000"
+ 455      536C6176 
+ 455      655F4241 
+ 455      434B5550 
+ 455      5F535452 
+ 456              	.LASF25:
+ 457 006c 4932435F 		.ascii	"I2C_Slave_backup\000"
+ 457      536C6176 
+ 457      655F6261 
+ 457      636B7570 
+ 457      00
+ 458              	.LASF21:
+ 459 007d 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 459      4320342E 
+ 459      392E3320 
+ 459      32303135 
+ 459      30333033 
+ 460 00b0 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 460      20726576 
+ 460      6973696F 
+ 460      6E203232 
+ 460      31323230 
+ 461 00e3 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 461      66756E63 
+ 461      74696F6E 
+ 461      2D736563 
+ 461      74696F6E 
+ 462              	.LASF5:
+ 463 010b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 463      20756E73 
+ 463      69676E65 
+ 463      6420696E 
+ 463      7400
+ 464              	.LASF7:
+ 465 011d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 465      206C6F6E 
+ 465      6720756E 
+ 465      7369676E 
+ 465      65642069 
+ 466              	.LASF3:
+ 467 0134 73686F72 		.ascii	"short unsigned int\000"
+ 467      7420756E 
+ 467      7369676E 
+ 467      65642069 
+ 467      6E7400
+ 468              	.LASF18:
+ 469 0147 4932435F 		.ascii	"I2C_Slave_Wakeup\000"
+ 469      536C6176 
+ 469      655F5761 
+ 469      6B657570 
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 14
+
+
+ 469      00
+ 470              	.LASF17:
+ 471 0158 4932435F 		.ascii	"I2C_Slave_Sleep\000"
+ 471      536C6176 
+ 471      655F536C 
+ 471      65657000 
+ 472              	.LASF20:
+ 473 0168 4932435F 		.ascii	"I2C_Slave_Enable\000"
+ 473      536C6176 
+ 473      655F456E 
+ 473      61626C65 
+ 473      00
+ 474              	.LASF1:
+ 475 0179 756E7369 		.ascii	"unsigned char\000"
+ 475      676E6564 
+ 475      20636861 
+ 475      7200
+ 476              	.LASF13:
+ 477 0187 63686172 		.ascii	"char\000"
+ 477      00
+ 478              	.LASF4:
+ 479 018c 6C6F6E67 		.ascii	"long int\000"
+ 479      20696E74 
+ 479      00
+ 480              	.LASF12:
+ 481 0195 646F7562 		.ascii	"double\000"
+ 481      6C6500
+ 482              	.LASF14:
+ 483 019c 72656733 		.ascii	"reg32\000"
+ 483      3200
+ 484              	.LASF9:
+ 485 01a2 75696E74 		.ascii	"uint8\000"
+ 485      3800
+ 486              	.LASF0:
+ 487 01a8 7369676E 		.ascii	"signed char\000"
+ 487      65642063 
+ 487      68617200 
+ 488              	.LASF23:
+ 489 01b4 433A5C55 		.ascii	"C:\\Users\\Tim Chen\\Desktop\\Test proximity auto t"
+ 489      73657273 
+ 489      5C54696D 
+ 489      20436865 
+ 489      6E5C4465 
+ 490 01e3 756E696E 		.ascii	"uning\\MH-8W_Proximity_Board_V9_20170619\\MH-8W_PRO"
+ 490      675C4D48 
+ 490      2D38575F 
+ 490      50726F78 
+ 490      696D6974 
+ 491 0214 58494D49 		.ascii	"XIMITY.cydsn\\Bootloader_V01\\Bootloader_PSoC4_Exam"
+ 491      54592E63 
+ 491      7964736E 
+ 491      5C426F6F 
+ 491      746C6F61 
+ 492 0245 706C6530 		.ascii	"ple01.cydsn\000"
+ 492      312E6379 
+ 492      64736E00 
+ 493              	.LASF11:
+ARM GAS  C:\Users\TIMCHE~1\AppData\Local\Temp\cc3mLzFh.s 			page 15
+
+
+ 494 0251 666C6F61 		.ascii	"float\000"
+ 494      7400
+ 495              	.LASF19:
+ 496 0257 4932435F 		.ascii	"I2C_Slave_Stop\000"
+ 496      536C6176 
+ 496      655F5374 
+ 496      6F7000
+ 497              	.LASF2:
+ 498 0266 73686F72 		.ascii	"short int\000"
+ 498      7420696E 
+ 498      7400
+ 499              	.LASF15:
+ 500 0270 73697A65 		.ascii	"sizetype\000"
+ 500      74797065 
+ 500      00
+ 501              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
